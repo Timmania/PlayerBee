@@ -1,2 +1,3 @@
-# Overpowered Bees
-Overpowered Bees
+# Player Bee
+Player Bee
+![alt text](logo.png)
