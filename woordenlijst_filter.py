@@ -6,12 +6,19 @@ def remove_change_good(words):
     good_words = []
     for word in words:
         if len(word) >= 4:    #minder dan 4                                                      #dit is eerst ff zodat ik kan zien welke stappen ik al heb gedaan, list comprehensions komen later
-            if "0123456789" not in word and "\'\"-\xb2\xb3\u2082\xb4+.," not in word: #met getallen, punctuatie en met super- en subscript
-                good_words.append(word)
+            for char in word:
+                if word not in "0123456789" and "\'\"-\xb2\xb3\u2082\xb4+.," not in word: #met getallen, punctuatie en met super- en subscript
+                    good_words.append(word)
     return good_words
 
 # de output klopt nog niet helemaal helaas maar hier is een begin, ik ga vanavond verder, nu eerst ff m'n fiets ophalen
-
+#    good_words = []
+#    for i in range(len(words)):
+#        if len(words[i]) >=4:
+#            for I in range(len(words[i])):
+#            if "0123456789" not in words[i] and "\'\"-\xb2\xb3\u2082\xb4+.," not in words[i]:
+#                good_words.append(words[i])
+#    return good_words
 
 def main():
     """
@@ -33,7 +40,7 @@ def main():
     with open('woorden.txt', 'r') as w:
         data = w.readlines()
         good_words_set = remove_change_good(data)
-    print(good_words_set)
+    print (good_words_set)
 
 if __name__ == "__main__":
     main()
