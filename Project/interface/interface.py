@@ -2,7 +2,7 @@ import curses as cs
 from curses import textpad
 
 
-class screens:
+class Screens:
     """ Initialize the standard screen of the game.
         Everything will be put on this screen.
         Create an object to create screen.
@@ -13,9 +13,8 @@ class screens:
 
 
     def welcome_screen(self):
-        """
-            Creates a welcome screen, waits until user presses Enter.
-            Pages like instructions/rules need to be added.
+        """ Creates a welcome screen, waits until user presses Enter.
+            TODO Pages like instructions/rules need to be added.
             After object is created, call this method to show welcome screen.
         """
         x = self.w // 2 - 26
@@ -43,6 +42,14 @@ class screens:
 
 
     def play_screen(self, start_word):
+        """ this creates a new window where the game is played.
+            other objects draw things on this screen.
+        """
+        self.play_scr = cs.newwin(self.h, self.w, 0, 0)
+
+        self.hiven_screen(self.)
+        self.inp_screen(self.words_scr)
+
         self.hiven_scr = cs.newwin(self.h - 3, self.w // 2, 0, 0)
         self.hiven_screen(self.hiven_scr, start_word)
 
@@ -52,7 +59,8 @@ class screens:
         self.words_scr = cs.newwin(self.h, self.w // 2, 0, self.w // 2)
         self.words_found(self.words_scr)
 
-    def hiven_screen(self, screen, start_word):
+    def hiven_screen(self, screen):
+        start_word =
         h, w = screen.getmaxyx()
         x = w // 2 - 21
         y = h // 2 - 1
