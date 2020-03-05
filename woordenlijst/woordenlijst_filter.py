@@ -6,9 +6,7 @@ def remove_change_good(words):
     good_words = []
     for word in words:
         if len(word) >= 4:    #minder dan 4                                                      #dit is eerst ff zodat ik kan zien welke stappen ik al heb gedaan, list comprehensions komen later
-            for char in word:
-                if word not in "0123456789" and "\'\"-\xb2\xb3\u2082\xb4+.," not in word: #met getallen, punctuatie en met super- en subscript
-                    good_words.append(word)
+            good_words = [word for char in word if char not in "0123456789" and char not in "\'\"-\xb2\xb3\u2082\xb4+.,"]
     return good_words
 
 # de output klopt nog niet helemaal helaas maar hier is een begin, ik ga vanavond verder, nu eerst ff m'n fiets ophalen
