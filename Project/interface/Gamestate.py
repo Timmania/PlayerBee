@@ -5,7 +5,7 @@ import random
 class GameState:
     def __init__(self):
         self.letters = []
-        self.score = 0
+        self.score = 0         # TODO create function to get score
         self.word_set = set()  # TODO link to wordlist to get set of words with self.letters
         self.pangram_set = set()
 
