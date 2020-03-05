@@ -74,7 +74,7 @@ class Screens:
         screen.addstr(y, x, "   _______   /     {0}     \   _______     ".format(start_word[0]))
         screen.addstr(y + 1, x, " /         \ \           / /         \   ")
         screen.addstr(y + 2, x, "/     {0}     \ \ _______ / /     {1}     \  ".format(start_word[5], start_word[3]))
-        screen.addstr(y + 3, x, "\           /   _______   \           /  ")
+        screen.addstr(y + 3, x, "\           /   _______    \           /  ")
         screen.addstr(y + 4, x, " \ _______ /  /         \  \ _______ /   ")
         screen.addstr(y + 5, x, "             /     {0}     \               ".format(start_word[4]))
         screen.addstr(y + 6, x, "             \           /               ")
