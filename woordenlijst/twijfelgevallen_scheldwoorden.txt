@@ -4,7 +4,6 @@ apenkont
 autist
 bokkenrijder
 choco
-del
 dwaas
 eendenkont
 eikel
@@ -37,7 +36,6 @@ mafketel
 mafkikker
 mietje
 muilezelin
-oen
 onderkruipsel
 ossenkop
 pagadder
