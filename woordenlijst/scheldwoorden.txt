@@ -86,6 +86,7 @@ kankerhoer
 kankerhond
 kankerlijder
 kankerlijer
+kankerneger
 kankernicht
 kapsoneslijer
 karhengst
@@ -229,6 +230,7 @@ teringlijer
 tietvlieg
 totebel
 trut
+tyfushond
 tyfuslijder
 variétéhoer
 vetklep

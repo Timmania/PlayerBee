@@ -23,6 +23,7 @@ def main():
                 Dit moet er gebeuren:
 
                 De volgende woorden gaan we verwijderen:
+                - woorden met meer dan 7 verschillende letters
                 - Woorden met minder dan 4 letters
                 - Woorden met getallen
                 - Woorden met punctuatie

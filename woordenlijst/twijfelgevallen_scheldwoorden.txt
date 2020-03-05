@@ -1,66 +1,66 @@
 ﻿Categorie woorden twijfel
 
-apenkont
-autist
-bokkenrijder
-choco
-dwaas
-eendenkont
-eikel
-etter
-etterbuil
-fleer
-gangster
-gluiperd
-gluipsnor
-gratenbaal
-grobbejanus
-harpij
-heihaas
-homo
-karonje
-kees
-klapperaap
-kloefkapper
-klooi
-kluns
-kreng
-krielkip
-kwakzalver
-lelijkerd
-lomperd
-lomperik
-lummel
-maffer
-mafketel
-mafkikker
-mietje
-muilezelin
-onderkruipsel
-ossenkop
-pagadder
-paplap
-plurk
-polak
-rekel
-ruigpoot
-schelm
-schijterd
-schijtlaars
-schijtlijster
-schobbejak
-schurk
-slijmerd
-slijmbal
-smeerpijp
-snotaap
-sodemieter
-stomkop
-strontzak
-taalnazi
-totebel
-vlooienzak
-ALLES met het woord zeik ervoor
-zenuwenlijer
-zenuwlijer
-Alles met zeur ervoor.
+apenkont                geen scheldwoorden
+autist                  geen
+bokkenrijder            eruit
+choco                   geen scheldwoord
+dwaas                   geen
+eendenkont              geen
+eikel                   geen
+etter                   geen
+etterbuil               geen
+fleer                   eruit
+gangster                geen
+gluiperd                geeen
+gluipsnor               geen
+gratenbaal              eruit
+grobbejanus             eruit
+harpij                  geen
+heihaas                 geen
+homo                    eruit
+karonje                 eruit
+kees                    eruit
+klapperaap              eruit
+kloefkapper             eruit
+klooi                   geen
+kluns                   geen
+kreng                   eruit
+krielkip                geen
+kwakzalver              geen
+lelijkerd               eruit
+lomperd                 eruit
+lomperik                eruit
+lummel                  geen
+maffer                  geen
+mafketel                geen
+mafkikker               eruit
+mietje                  geen
+muilezelin              geen
+onderkruipsel           geen
+ossenkop                geen
+pagadder                geen
+paplap                  geen
+plurk                   eruit
+polak                   geen
+rekel                   eruit
+ruigpoot                eruit
+schelm                  geen
+schijterd               geen
+schijtlaars             eruit
+schijtlijster           eruit
+schobbejak              eruit
+schurk                  geen
+slijmerd                geen
+slijmbal                eruit
+smeerpijp               eruit
+snotaap                 geen
+sodemieter              eruit
+stomkop                 geen
+strontzak               geen
+taalnazi                eruit
+totebel                 eruit
+vlooienzak              geen
+ALLES met zeik          eruit
+zenuwenlijer            geen
+zenuwlijer              geen
+Alles met zeur ervoor.  geen
