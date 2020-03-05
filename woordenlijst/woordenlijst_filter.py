@@ -18,6 +18,8 @@ def remove_change_good(words):
 #                good_words.append(words[i])
 #    return good_words
 
+#class of module, de volledige of aangepast woordenset
+
 def main():
     """
                 Dit moet er gebeuren:
