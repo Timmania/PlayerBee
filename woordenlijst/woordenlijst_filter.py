@@ -3,6 +3,8 @@
 
 # TODO zorg ff dat je een programma maakt van de mogelijke woorden met deze letters.
 
+# ëéèêáàäâïîôöûü
+
 import string
 
 def remove_change_good(words):
