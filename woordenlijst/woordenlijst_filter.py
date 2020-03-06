@@ -18,10 +18,45 @@
                   dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
 """
 
-# TODO zorg ff dat je een programma maakt van de mogelijke woorden met de letters die in de spelling bee komen te staan tijdens het spelen.
-
 import string
 import unidecode
+
+def transform_pangrams(pangrams):
+    grote_set = set()
+    kleine_set_van1_pangram = {char for pangram in pangrams for char in pangram}
+    for i in range(len(pangrams)):
+        grote_set.add(kleine_set_van1_pangram)
+
+def pangrams_only(words_possible, letters_used):
+    letters_used = list(letters_used)
+    almost_pangrams = []
+    for word in words_possible:
+        counter = 0
+        for letter in letters_used:
+            if letter not in word:
+                break
+            else:
+                counter = counter + 1
+                if counter == len(letters_used):
+                    almost_pangrams.append(word)
+    return set(almost_pangrams)
+
+
+def possible_words(words_set, letters_on_display):
+    good_words = []
+    for word in words_set:
+        counter = 0
+        for car in word:
+            if car not in letters_on_display:
+                break
+            counter += 1
+        # gaat net zo lang door totdat er break is voor het woord en anders net zo lang totdat alle chars zijn geweest
+
+            if len(word) == counter:
+                good_words.append(word)
+        # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan voegt hij hem hier toe
+
+    return (good_words, letters_on_display)
 
 def filter(words, curse_words):
 
@@ -51,7 +86,10 @@ def main():
     with open ('scheldwoorden.txt', 'r') as s:
         scheldwoorden = set(s.readlines())
     good_words_set = filter(data, scheldwoorden)
-    print (good_words_set)
+    possible_words_set, letters_on_display = possible_words(good_words_set, {'a', 'e', 'k', 'n', 't', 'o', 'l'})
+    pangrams_sorted = pangrams_only(possible_words_set, letters_on_display)
+    pangrams_in_format = transform_pangrams(pangrams_sorted)
+    print (pangrams_in_format)
 
 if __name__ == "__main__":
     main()
