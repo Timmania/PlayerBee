@@ -6,11 +6,13 @@
 # ëéèêáàäâïîôöûü
 
 import string
+import unidecode
 
-def proberen(words):
-    exceptions = string.punctuation + string.digits + "\t\xb2\xb3\u2082\xb4"                # punctuation, getallen, lage en hoge getallen
+def proberen(words, curse_words):
+    exceptions = string.punctuation + string.digits + " \t\xb2\xb3\u2082\xb4"                # punctuation, getallen, lage en hoge getallen
     clean_list = [word.replace('\n', "") for word in words if not any(p in word for p in exceptions)] #haalt hier de enters uit elk element en checkt op de exceptions
-    clean_list = [word for word in clean_list if len(word) >=4 and not word[0] ==  word[0].upper()]               # woorden kotter dan 4 en de woorden die als eerste een hoofdletter hebben
+    clean_list = {unidecode.unidecode(word) for word in clean_list if len(word) >=4 and not word[0] ==  word[0].upper()}               # woorden kotter dan 4 en de woorden die als eerste een hoofdletter hebben
+    clean_list = clean_list - curse_words
     return (clean_list)
 
 def main():
@@ -24,16 +26,18 @@ def main():
          #       - Woorden met punctuatie
          #       - Woorden met als eerste letter een hoofdletter
          #       - Woorden met een laag of hoog getal zoals CO₂-heffing (superscript, subscript)
-                - Scheldwoorden (met behulp van een andere set als die gevonden kan worden, anders gaan we een andere lijst opzoeken)
+         #       - Scheldwoorden (met behulp van een andere set als die gevonden kan worden, anders gaan we een andere lijst opzoeken)
 
-                De volgende woorden gaan we aanpassen:
-                - Woorden met 1 of meerdere accenten zoals ë é (hiervan wordt de letter(s) aangepast naar dezelfde letter(s) maar dan zonder het accent(en))
+         #       De volgende woorden gaan we aanpassen:
+         #       - Woorden met 1 of meerdere accenten zoals ë é (hiervan wordt de letter(s) aangepast naar dezelfde letter(s) maar dan zonder het accent(en))
                 Hierbij wordt overigens in de regels gezet hoe je hier gebruik van kunt maken
-                - Woorden met een hoofdletter die niet op de eerste plek staan (worden aangepast naar hetzelfde woord lowercase, dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
+         #       - Woorden met een hoofdletter die niet op de eerste plek staan (worden aangepast naar hetzelfde woord lowercase, dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
     """
     with open('woorden.txt', 'r') as w:
         data = w.readlines()
-        good_words_set = proberen(data)
+    with open ('scheldwoorden.txt', 'r') as s:
+        scheldwoorden = set(s.readlines())
+    good_words_set = proberen(data, scheldwoorden)
     print (good_words_set)
 
 if __name__ == "__main__":
