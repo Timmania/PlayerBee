@@ -3,20 +3,14 @@
 
 # TODO zorg ff dat je een programma maakt van de mogelijke woorden met deze letters.
 
-import string
+# ëéèêáàäâïîôöûü
 
-def remove_change_good(words):
-    good_words = []
-    for word in words:
-        if len(word) >= 4 and word not in "0123456789" and word not in "\'\"-\xb2\xb3\u2082\xb4+.,":
-            good_words.append(word)
-    return good_words
+import string
 
 def proberen(words):
     exceptions = string.punctuation + string.digits + "\t\xb2\xb3\u2082\xb4"                # punctuation, getallen, lage en hoge getallen
     clean_list = [word.replace('\n', "") for word in words if not any(p in word for p in exceptions)] #haalt hier de enters uit elk element en checkt op de exceptions
-    clean_list = [word for word in clean_list if len(word) >=4]
-    clean_list = [word for word in clean_list if not word[0] ==  word[0].upper()]                   #haalt hij de woorden eruit die als eerste een hoofdletter hebben
+    clean_list = [word for word in clean_list if len(word) >=4 and not word[0] ==  word[0].upper()]               # woorden kotter dan 4 en de woorden die als eerste een hoofdletter hebben
     return (clean_list)
 
 def main():
