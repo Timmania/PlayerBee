@@ -1,160 +1,231 @@
 import curses as cs
+from Gamestate import GameState
 from curses import textpad
+import time
 
 
-class Screens:
-    """ Initialize the standard screen of the game.
-        Everything will be put on this screen.
-        Create an object to create screen.
-        """
-    def __init__(self):
-        self.stdscr = cs.initscr()
-        self.h, self.w = self.stdscr.getmaxyx()
+def welcome_screen(screen: object):
+    """ Creates a welcome screen, waits until user presses Enter or Esc.
+        TODO Pages like instructions/rules need to be added.
+        call this function to clear screen and show welcome screen
+        :param screen:
+    """
+    cs.noecho()
+    h, w = screen.getmaxyx()
+    if h < 19 or w < 80:
+        print("screen is to small")
+        exit(0)
+    x = w // 2 - 26
+    y = h // 2 - 2
+    screen.clear()
+    screen.addstr(y - 4, x, "  _____  _                         ____             ")
+    screen.addstr(y - 3, x, " |  __ \| |                       |  _ \            ")
+    screen.addstr(y - 2, x, " | |__) | | __ _ _   _  ___ _ __  | |_) | ___  ___  ")
+    screen.addstr(y - 1, x, " |  ___/| |/ _` | | | |/ _ \ '__| |  _ < / _ \/ _ \ ")
+    screen.addstr(y, x,     " | |    | | (_| | |_| |  __/ |    | |_) |  __/  __/ ")
+    screen.addstr(y + 1, x, " |_|    |_|\__,_|\__, |\___|_|    |____/ \___|\___| ")
+    screen.addstr(y + 2, x, "                  __/ |                             ")
+    screen.addstr(y + 3, x, "                 |___/                              ")
+    screen.addstr(y + 5, x, "{0:^52}".format("press Enter to play game"))
+    screen.addstr(y + 6, x, "{0:^52}".format("press Esc to exit game"))
+    screen.refresh()
+    while 1:
+        key = screen.getch()
+        if key == 10:
+            screen.clear()
+            screen.refresh()
+            cs.echo()
+            break
+        if key == 27:
+            exit(0)
 
 
-    def welcome_screen(self):
-        """ Creates a welcome screen, waits until user presses Enter.
-            TODO Pages like instructions/rules need to be added.
-            After object is created, call this method to show welcome screen.
-        """
-        x = self.w // 2 - 26
-        y = self.h // 2 - 2
-        self.stdscr.addstr(y - 4, x, "  _____  _                         ____             ")
-        self.stdscr.addstr(y - 3, x, " |  __ \| |                       |  _ \            ")
-        self.stdscr.addstr(y - 2, x, " | |__) | | __ _ _   _  ___ _ __  | |_) | ___  ___  ")
-        self.stdscr.addstr(y - 1, x, " |  ___/| |/ _` | | | |/ _ \ '__| |  _ < / _ \/ _ \ ")
-        self.stdscr.addstr(y, x,     " | |    | | (_| | |_| |  __/ |    | |_) |  __/  __/ ")
-        self.stdscr.addstr(y + 1, x, " |_|    |_|\__,_|\__, |\___|_|    |____/ \___|\___| ")
-        self.stdscr.addstr(y + 2, x, "                  __/ |                             ")
-        self.stdscr.addstr(y + 3, x, "                 |___/                              ")
-        self.stdscr.addstr(y + 5, x + 13, "press Enter to play game")
-        self.stdscr.addstr(y + 6, x + 13, "press Esc to play exit game")
-        self.stdscr.refresh()
+def play_screen(screen: object):
+    """ Puts the lay-out on the screen for the game itself.
+        TODO find fix for resizing screen
+        :param screen:
+    """
+    h, w = screen.getmaxyx()
 
-        while 1:
-            key = self.stdscr.getch()
-            if key == 10:
-                self.stdscr.clear()
-                self.stdscr.refresh()
-                break
-            if key == 27:
-                exit(0)
+    # create hive figure
+    y = (h-4)//2
+    x = w//4 - 19
+    screen.addstr(y - 7, x, "                _______                 ")
+    screen.addstr(y - 6, x, "              /         \               ")
+    screen.addstr(y - 5, x, "   _______   /           \   _______    ")
+    screen.addstr(y - 4, x, " /         \ \           / /         \  ")
+    screen.addstr(y - 3, x, "/           \ \ _______ / /           \ ")
+    screen.addstr(y - 2, x, "\           /   _______   \           / ")
+    screen.addstr(y - 1, x, " \ _______ /  /         \  \ _______ /  ")
+    screen.addstr(y, x,     "   _______   /           \   _______    ")
+    screen.addstr(y + 1, x, " /         \ \           / /         \  ")
+    screen.addstr(y + 2, x, "/           \ \ _______ / /           \ ")
+    screen.addstr(y + 3, x, "\           /   _______   \           / ")
+    screen.addstr(y + 4, x, " \ _______ /  /         \  \ _______ /  ")
+    screen.addstr(y + 5, x, "             /           \              ")
+    screen.addstr(y + 6, x, "             \           /              ")
+    screen.addstr(y + 7, x, "              \ _______ /               ")
 
+    # create input block
+    screen.addstr(h-4, x - 5, "Enter a word:")
+    textpad.rectangle(screen, h - 3, x - 5, h-1, x + 43)
 
-    def play_screen(self, start_word):
-        """ this creates a new window where the game is played.
-            other objects draw things on this screen.
-        """
-        self.play_scr = cs.newwin(self.h, self.w, 0, 0)
+    # create words found block:
+    y = 0
+    x = (w // 4)*3 - 20
+    screen.addstr(y + 1, x, "{0:^39}".format("Words found"))
+    textpad.rectangle(screen, y, x, y + 2, x + 40)
+    screen.addstr(y + 3, x + 3, "{0:<18}{1:>17}".format("Words:", "Points:"))
 
-        self.hiven_screen(self.)
-        self.inp_screen(self.words_scr)
-
-        self.hiven_scr = cs.newwin(self.h - 3, self.w // 2, 0, 0)
-        self.hiven_screen(self.hiven_scr, start_word)
-
-        self.inp_scr = cs.newwin(3, self.w // 2, self.h - 4, 0)
-        self.input_screen(self.inp_scr)
-
-        self.words_scr = cs.newwin(self.h, self.w // 2, 0, self.w // 2)
-        self.words_found(self.words_scr)
-
-    def hiven_screen(self, screen):
-        start_word =
-        h, w = screen.getmaxyx()
-        x = w // 2 - 21
-        y = h // 2 - 1
-        screen.addstr(y - 7, x, "                _______                  ")
-        screen.addstr(y - 6, x, "              /         \                ")
-        screen.addstr(y - 5, x, "   _______   /     {0}     \   _______     ".format(start_word[1]))
-        screen.addstr(y - 4, x, " /         \ \           / /         \   ")
-        screen.addstr(y - 3, x, "/     {0}     \ \ _______ / /     {1}     \  ".format(start_word[6], start_word[2]))
-        screen.addstr(y - 2, x, "\           /   _______   \           /  ")
-        screen.addstr(y - 1, x, " \ _______ /  /         \  \ _______ /   ")
-        screen.addstr(y, x, "   _______   /     {0}     \   _______     ".format(start_word[0]))
-        screen.addstr(y + 1, x, " /         \ \           / /         \   ")
-        screen.addstr(y + 2, x, "/     {0}     \ \ _______ / /     {1}     \  ".format(start_word[5], start_word[3]))
-        screen.addstr(y + 3, x, "\           /   _______    \           /  ")
-        screen.addstr(y + 4, x, " \ _______ /  /         \  \ _______ /   ")
-        screen.addstr(y + 5, x, "             /     {0}     \               ".format(start_word[4]))
-        screen.addstr(y + 6, x, "             \           /               ")
-        screen.addstr(y + 7, x, "              \ _______ /                ")
-        screen.refresh()
-
-    def input_screen(self, screen):
-        h, w = screen.getmaxyx()
-        x = w // 2 - 26
-        y = h // 2
-        textpad.rectangle(screen, 0, 21, 2, 50)
-        screen.addstr(1, x, "enter  a word ")
-        screen.refresh()
-
-    def words_found(self, screen):
-        h, w = screen.getmaxyx()
-        x = w // 2 - 18
-        y = h // 2
-        textpad.rectangle(screen, 0, x, 2, x + 40)
-        screen.addstr(1, x + 14, "words found:")
-        screen.addstr(3, x, "      words:            points: ")
-        screen.refresh()
+    screen.refresh()
 
 
-    def play_game(self):
-        cs.echo()
-        self.user_input = cs.newwin(1, 27, self.h - 3, 23)
-        enu = 0
-        s = ""
-        while s != "exit game":
-            s = self.user_input.getstr(0, 0, 27).strip().decode("utf-8")
-            if s == "exit game":
-                self.hiven_scr.clear()
-                self.hiven_scr.refresh()
-                self.inp_scr.clear()
-                self.inp_scr.refresh()
-                self.words_scr.clear()
-                self.words_scr.refresh()
-                break
-            self.words_scr.addstr(4 + enu, 17, s)
-            self.words_scr.refresh()
-            enu += 1
-            if enu > 10:
-                self.hiven_scr.clear()
-                self.hiven_scr.refresh()
-                self.inp_scr.clear()
-                self.inp_scr.refresh()
-                self.words_scr.clear()
-                self.words_scr.refresh()
-                break
-            self.user_input.clear()
-            self.user_input.refresh()
+def add_word(screen: object, word: list) -> object:
+    """ Add word to the screen. this should only be done when required.
+        The characters should fit nicely into the hive.
+        This function does not clear anything, only overwrite.
+        :param screen:
+        :type word: list:
+    """
+    h, w = screen.getmaxyx()
+    y = (h - 4) // 2
+    x = w // 4
+    screen.addstr(y, x, word[0])
+    screen.addstr(y - 5, x, word[1])
+    screen.addstr(y - 3, x + 13, word[2])
+    screen.addstr(y + 2, x + 13, word[3])
+    screen.addstr(y + 5, x, word[4])
+    screen.addstr(y + 2, x - 13, word[5])
+    screen.addstr(y - 3, x - 13, word[6])
+    screen.refresh()
+
+
+def user_input(screen: object) -> str:
+    """ Asks the user to input a word.
+        Upon hitting enter, the typed characters will be returned.
+        The returned string is stripped and lower.
+        :type screen: object
+    """
+    h, w = screen.getmaxyx()
+    x = w // 4 - 17
+    inp_scr = screen.subwin(1, 21, h - 2, x)
+    s = inp_scr.getstr(0, 0, 20).strip().decode("utf-8").lower()
+    inp_scr.clear()
+    inp_scr.refresh()
+    return s
+
+
+def give_feedback(screen: object, feedback: str):
+    """ prints out the feedback of the last given answer.
+        Feedback should be a message or the points received.
+        TODO look at the position of input screen and the text above
+        :param screen:
+        :param feedback:
+    """
+    h, w = screen.getmaxyx()
+    x = w // 4 + 24 - len(feedback)
+    screen.addstr(h - 4, x, "{0}".format(feedback))
+    screen.refresh()
+
+
+def title_screen(screen: object, tot_points: int):
+    """ After the user typed exit game, this screen will show.
+        The user can go to the home screen and play again or exit the game.
+        :param screen:
+        :param tot_points:
+    """
+    screen.clear()
+    h, w = screen.getmaxyx()
+    x = w // 2 - 26
+    y = h // 2 - 5
+    screen.addstr(y - 3, x, " __     __                                    _ _   ")
+    screen.addstr(y - 2, x, " \ \   / /                                   | | |  ")
+    screen.addstr(y - 1, x, "  \ \_/ /__  _   _ _ __   _ __ ___  ___ _   _| | |_ ")
+    screen.addstr(y, x,     "   \   / _ \| | | | '__| | '__/ _ \/ __| | | | | __|")
+    screen.addstr(y + 1, x, "    | | (_) | |_| | |    | | |  __/\__ \ |_| | | |_ ")
+    screen.addstr(y + 2, x, "    |_|\___/ \__,_|_|    |_|  \___||___/\__,_|_|\__|")
+    screen.addstr(y + 4, x, "{0:^52}".format(tot_points))
+    screen.addstr(y + 6, x, "{0:^52}".format("press Enter to go to the home screen"))
+    screen.addstr(y + 7, x, "{0:^52}".format("press Esc to exit game"))
+    screen.refresh()
+    while 1:
+        key = screen.getch()
+        if key == 10:
+            screen.clear()
+            screen.refresh()
+            cs.echo()
+            break
+        if key == 27:
+            exit(0)
+    # show points
+    # thank the player
+    # made by bla bla bla
+    pass
+
+
+def update_words_found(screen: object, list_of_results: list):
+    """ update the word_list on the right of the screen.
+        The word plus the score of that word will be shown.
+        Only correct guessed words are shown.
+        TODO fix this function
+        :param screen:
+        :param list_of_results:
+    """
+    h, w = screen.getmaxyx()
+    y = 0
+    x = (w // 4) * 3 - 20
+    n_terms = len(list_of_results)
+    if n_terms <= 10:
+        for n in range(n_terms):
+            screen.addstr(y + 4 + n, x + 3, "{0:<21}{1:>14}".format(list_of_results[n][0], list_of_results[n][1]))
+    elif n_terms == 11:
+        screen.addstr(y + 4 + 0, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        for n in range(1, n_terms):
+            screen.addstr(y + 4 + n, x + 3, "{0:<21}{1:>14}".format(list_of_results[n_terms-(9-n)][0], list_of_results[n_terms-(9-n)][1]))
+            time.sleep(1)
+    elif n_terms == 12:
+        screen.addstr(y + 4 + 0, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        screen.addstr(y + 4 + 1, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        for n in range(2, n_terms):
+            screen.addstr(y + 4 + n, x + 3, "{0:<21}{1:>14}".format(list_of_results[n_terms-(10-n)][0], list_of_results[n_terms-(10-n)][1]))
+    else:
+        screen.addstr(y + 4 + 0, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        screen.addstr(y + 4 + 1, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        screen.addstr(y + 4 + 2, x + 3, "{0:<21}{1:>14}".format("...", "."))
+        for n in range(n_terms-10, n_terms):
+            screen.addstr(y + 4 + n, x + 3, "{0:<21}{1:>14}".format(list_of_results[n_terms-(10-n)][0], list_of_results[n_terms-(10-n)][1]))
+    screen.refresh()
 
 
 def main():
-    window = screens()
+    stdscr = cs.initscr()                   # just initialize a screen, doesn't do anything
+    # gamestate = GameState()
+    get_word = ["B", "P", "L", "A", "Y", "E", "R"]
     while 1:
-        window.welcome_screen()
-        window.play_screen(["B", "P", "L", "A", "Y", "E", "R"])
-        window.play_game()
+        welcome_screen(stdscr)              # put a welcome screen on stdscr
+        play_screen(stdscr)                 # clear screen, put lay out for the game on stdscr
+        add_word(stdscr, get_word)          # add first word to screen
+        list_of_results = []
+        while 1:                            # play game
+            input_str = user_input(stdscr)
+            if input_str == "exit game":
+                title_screen(stdscr, 8)     # 8 should be gamestate.get_score()
+                break
+            elif input_str == "new hive":
+                add_word(stdscr, ["A", "G", "C", "H", "S", "E", "R"])
+            else:
+                result = ("Middle letter not in guess", len(input_str))
+                if len(result) == 1:
+                    give_feedback(stdscr, result[0])
+                else:
+                    give_feedback(stdscr, result[0])
+                    list_of_results.append((input_str, result[1]))
+                    print(list_of_results)
+                    update_words_found(stdscr, list_of_results)
 
-    exit(0)
 
 
-    enu = 0
-    s = ""
 
-    while s != "exit game":
-        s = user_input.getstr(0, 0, 27).strip().decode("utf-8")
-        if s == "exit game":
-            break
-        words_scr.addstr(4 + enu, 17, s)
-        words_scr.refresh()
-        enu += 1
-        if enu > 10:
-            break
-        user_input.clear()
-        user_input.refresh()
-
-    stdscr.getch()
 
 if __name__ == "__main__":
     main()
