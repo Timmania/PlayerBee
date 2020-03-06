@@ -23047,7 +23047,6 @@ bingoën
 bink
 binken
 binnen
-bínnen
 binnenaanval
 binnenafmeting
 binnenafwerking
@@ -199494,3 +199493,4 @@ zzp-schap
 zzp-wetgeving
 zzz
 1234568
+ëéèêáàäâïîôöûü

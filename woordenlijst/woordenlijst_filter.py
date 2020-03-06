@@ -13,19 +13,23 @@ def remove_change_good(words):
     return good_words
 
 def proberen(words):
-    clean_list = [word for word in words if not any(p in word for p in string.punctuation string.digits)]
-    print(clean_list)
+    exceptions = string.punctuation + string.digits + "\t\xb2\xb3\u2082\xb4"                # punctuation, getallen, lage en hoge getallen
+    clean_list = [word.replace('\n', "") for word in words if not any(p in word for p in exceptions)] #haalt hier de enters uit elk element en checkt op de exceptions
+    clean_list = [word for word in clean_list if len(word) >=4]
+    clean_list = [word for word in clean_list if not word[0] ==  word[0].upper()]                   #haalt hij de woorden eruit die als eerste een hoofdletter hebben
+    return (clean_list)
+
 def main():
     """
                 Dit moet er gebeuren:
 
                 De volgende woorden gaan we verwijderen:
                 - woorden met meer dan 7 verschillende letters
-                - Woorden met minder dan 4 letters
-                - Woorden met getallen
-                - Woorden met punctuatie
-                - Woorden met als eerste letter een hoofdletter
-                - Woorden met een laag of hoog getal zoals CO₂-heffing (superscript, subscript)
+         #       - Woorden met minder dan 4 letters
+         #       - Woorden met getallen
+         #       - Woorden met punctuatie
+         #       - Woorden met als eerste letter een hoofdletter
+         #       - Woorden met een laag of hoog getal zoals CO₂-heffing (superscript, subscript)
                 - Scheldwoorden (met behulp van een andere set als die gevonden kan worden, anders gaan we een andere lijst opzoeken)
 
                 De volgende woorden gaan we aanpassen:
