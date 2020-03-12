@@ -21,17 +21,17 @@ import string
 import unidecode
 
 def pangrams_only(letters_on_display):
-    words_possible, letters_used = possible_words(letters_on_display)
-    letters_used = list(letters_used)
+    words_possible = possible_words(letters_on_display)
+    letters_on_display = list(letters_on_display)
     almost_pangrams = []
     for word in words_possible:
         counter = 0
-        for letter in letters_used:
+        for letter in letters_on_display:
             if letter not in word:
                 break
             else:
                 counter = counter + 1
-                if counter == len(letters_used):
+                if counter == len(letters_on_display):
                     if len(word) == 7:                       # deze regel is alleen nodig als je perfecte super pangrams wil
                         almost_pangrams.append(word)
     return set(almost_pangrams)
@@ -52,7 +52,7 @@ def possible_words(letters_on_display):
                 good_words.append(word)
         # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan voegt hij hem hier toe
 
-    return (good_words, letters_on_display)
+    return (good_words)
 
 def filter():
     words, curse_words= get_files()
