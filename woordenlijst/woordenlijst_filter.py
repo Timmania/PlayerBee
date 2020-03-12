@@ -32,7 +32,8 @@ def pangrams_only(words_possible, letters_used):
             else:
                 counter = counter + 1
                 if counter == len(letters_used):
-                    almost_pangrams.append(word)
+                    if len(word) == 7:                       # deze regel is alleen nodig als je perfecte super pangrams wil
+                        almost_pangrams.append(word)
     return set(almost_pangrams)
 
 
@@ -82,8 +83,7 @@ def main():
     good_words_set = filter(data, scheldwoorden)
     possible_words_set, letters_on_display = possible_words(good_words_set, {'a', 'e', 'k', 'n', 't', 'o', 'l'})
     pangrams_sorted = pangrams_only(possible_words_set, letters_on_display)
-    pangrams_in_format = transform_pangrams(pangrams_sorted)
-    print (pangrams_in_format)
+    print (pangrams_sorted)
 
 if __name__ == "__main__":
     main()
