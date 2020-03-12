@@ -81,7 +81,7 @@ def main():
     with open ('scheldwoorden.txt', 'r') as s:
         scheldwoorden = set(s.readlines())
     good_words_set = filter(data, scheldwoorden)
-    possible_words_set, letters_on_display = possible_words(good_words_set, {'a', 'e', 'k', 'n', 't', 'o', 'l'})
+    possible_words_set, letters_on_display = possible_words(good_words_set, {'s', 'h', 'c', 'i', 'r', 'f', 't'})
     pangrams_sorted = pangrams_only(possible_words_set, letters_on_display)
     print (pangrams_sorted)
 
