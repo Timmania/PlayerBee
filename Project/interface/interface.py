@@ -86,6 +86,8 @@ def play_screen(screen: object, h, w):
     x = (w // 4) * 3
     drawings.words_found_block(screen, 2, x)
 
+    drawings.game_info_block(screen, h - 2, x)
+
     screen.refresh()
 
 
@@ -167,7 +169,7 @@ def title_screen(screen: object, tot_points: int, h, w):
             exit(0)
 
 
-def update_words_found(screen: object, list_of_results: list, h, w):
+def update_words_found(screen: object, list_of_results: list, h, w, tot_points):
     """ update the word_list on the right of the screen.
         The word plus the score of that word will be shown.
         Only correct guessed words are shown.
@@ -178,23 +180,25 @@ def update_words_found(screen: object, list_of_results: list, h, w):
         :param list_of_results:
     """
     y = 5
-    x = (w // 4) * 3 - 21
+    x = (w // 4) * 3 - 18
     n_words = len(list_of_results)
-    if n_words <= 9:
+    n_lines = (h - 10) // 4 * 3
+    if n_words <= n_lines:
         for n in range(0, n_words):
-            screen.addstr(y + n, x + 3, "{0:<21}{1:>17}".format(list_of_results[n][0],
+            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[n][0],
                                                                 list_of_results[n][1]))
-    elif n_words == 10:
-        screen.addstr(y, x + 3, "{0:<21}{1:>18}".format("...", "..."))
-        for n in range(1, 10):
-            screen.addstr(y + n, x + 3, "{0:<21}{1:>17}".format(list_of_results[n][0],
+    elif n_words == n_lines:
+        screen.addstr(y, x, "{0:<21}{1:>18}".format("...", "..."))
+        for n in range(1, n_lines):
+            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[n][0],
                                                                 list_of_results[n][1]))
     else:
-        screen.addstr(y, x + 3, "{0:<21}{1:>18}".format("...", "..."))
-        p = n_words - 10
-        for n in range(1, 10):
-            screen.addstr(y + n, x + 3, "{0:<21}{1:>17}".format(list_of_results[p + n][0],
+        screen.addstr(y, x, "{0:<21}{1:>18}".format("...", "..."))
+        p = n_words - n_lines
+        for n in range(1, n_lines):
+            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[p + n][0],
                                                                 list_of_results[p + n][1]))
+    screen.addstr(h - 2, x + 15, "{0:^4}".format(tot_points))
     screen.refresh()
 
 

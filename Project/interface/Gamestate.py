@@ -4,11 +4,11 @@ import random
 
 class GameState:
     def __init__(self):
-        self.letters = ["a", "e", "p", "g", "n", "r", "l"]
+        self.letters = ["a", "e", "p", "g", "n", "r", "l"]  # TODO dit moet gefixed worden
         self.score = 0
         self.word_set = possible_words(self.letters)
-        self.pangram_set = list({"alrhxie", "ajdfndo", "akrpche", "ahrpelc"})
-        # self.set_letters()
+        self.pangram_set = list({"alrhxie", "ajdfndo", "akrpche", "ahrpelc"})  # TODO dit moet gefixed worden
+        # self.set_letters()  # TODO dit moet ook gefixed worden
 
     def get_score(self):
         return self.score
@@ -26,7 +26,7 @@ class GameState:
     def increase_score(self, word):
         if len(word) == 4:
             self.score += 1
-            return ["+1", len(word)]
+            return ["+1", 1]
         elif sorted(list(word)) == sorted(self.letters):
             self.score += 14
             return ["PANGRAM FOUND! +14", len(word)]

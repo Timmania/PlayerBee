@@ -16,7 +16,7 @@ def main():
             input_str = user_input(stdscr, h, w)  # ask user for input
 
             if input_str == "exit game":  # check if user wants to leave, show title screen
-                title_screen(stdscr, 8, h, w)  # TODO 8 should be gamestate.get_score()
+                title_screen(stdscr, gamestate.get_score(), h, w)
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
@@ -31,7 +31,7 @@ def main():
                 else:
                     give_feedback(stdscr, result[0], h, w)
                     list_of_results.append((input_str, result[1]))
-                    update_words_found(stdscr, list_of_results, h, w)
+                    update_words_found(stdscr, list_of_results, h, w, gamestate.get_score())
 
 
 if __name__ == '__main__':

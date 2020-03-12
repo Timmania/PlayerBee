@@ -57,6 +57,15 @@ def words_found_block(screen, center_y, center_x):
     screen.addstr(center_y + 2, x + 4, "{0:<18}{1:>25}".format("Words:", "Points:"))
 
 
+def game_info_block(screen, center_y, center_x):
+    x = center_x - 24
+    screen.addstr(center_y, x + 1, "{0:^20}".format("total points : "))
+    screen.addstr(center_y, x + 21, "{0:^4}".format("0"))
+    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
+    screen.addstr(center_y - 3, x + 4, "{0:<44}".format("Type: 'exit game' to exit"))
+    screen.addstr(center_y - 2, x + 4, "{0:<44}".format("Type: 'new hive'  to get new letters"))
+
+
 def result_block(screen, center_y, center_x, tot_points):
     x = center_x - 26
     screen.addstr(center_y - 3, x, " __     __                                    _ _   ")
