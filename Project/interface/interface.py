@@ -1,6 +1,5 @@
 import curses as cs
-from interface.Gamestate import GameState
-from interface import drawings
+from Project.interface import drawings
 
 
 def create_screen():
@@ -140,8 +139,8 @@ def give_feedback(screen: object, feedback: str, h, w):
         :param screen:
         :param feedback:
     """
-    x = w // 4 + 24 - len(feedback)
-    screen.addstr(h - 4, x, "{0}".format(feedback))
+    x = w // 4 - 6
+    screen.addstr(h - 4, x, "{0:>30}".format(feedback))
     screen.refresh()
 
 

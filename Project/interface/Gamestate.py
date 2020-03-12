@@ -1,15 +1,17 @@
-# from woordenlijst import word_set
+from woordenlijst.woordenlijst_filter import *
 import random
 
 
 class GameState:
     def __init__(self):
-        self.letters = []
-        self.score = 0         # TODO create function to get score
-        self.word_set = set()  # TODO link to wordlist to get set of words with self.letters
-        self.pangram_set = set()
+        self.letters = ["a", "e", "p", "g", "n", "r", "l"]
+        self.score = 0
+        self.word_set = possible_words(self.letters)
+        self.pangram_set = list({"alrhxie", "ajdfndo", "akrpche", "ahrpelc"})
+        # self.set_letters()
 
-        self.set_letters()
+    def get_score(self):
+        return self.score
 
     def get_letters(self):
         return self.letters
@@ -17,24 +19,28 @@ class GameState:
     def set_letters(self):
         new = random.choice(self.pangram_set)
         self.pangram_set.remove(new)
+        new = [ch for ch in new]
         self.letters = new
+        return new
 
     def increase_score(self, word):
         if len(word) == 4:
             self.score += 1
-            return "+1"
+            return ["+1", len(word)]
         elif sorted(list(word)) == sorted(self.letters):
             self.score += 14
-            return "PANGRAM FOUND! +14"
+            return ["PANGRAM FOUND! +14", len(word)]
         else:
             self.score += len(word)
-            return "+" + str(len(word))
+            return ["+" + str(len(word)), len(word)]
 
     def is_correct(self, guess):
+        if len(guess) < 4:
+            return ["Word must be 4 letters minimum"]
         if not all(x in self.letters for x in list(guess)):
-            return "Letter not in grate"
+            return ["Letter not in grate"]
         if not self.letters[0] in guess:
-            return "Middle letter not in guess"
+            return ["Middle letter not in guess"]
         if guess not in self.word_set:
-            return "Word not in word set"
+            return ["Word not in word set"]
         return self.increase_score(guess)
