@@ -17,11 +17,11 @@
                 - Woorden met een hoofdletter die niet op de eerste plek staan (worden aangepast naar hetzelfde woord lowercase,
                   dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
 """
-
 import string
 import unidecode
 
-def pangrams_only(words_possible, letters_used):
+def pangrams_only(letters_on_display):
+    words_possible, letters_used = possible_words(letters_on_display)
     letters_used = list(letters_used)
     almost_pangrams = []
     for word in words_possible:
@@ -37,7 +37,8 @@ def pangrams_only(words_possible, letters_used):
     return set(almost_pangrams)
 
 
-def possible_words(words_set, letters_on_display):
+def possible_words(letters_on_display):
+    words_set = filter()     #hier roept ie dus dat andere programma aan en krijgt ie de woordenlijst van alle mogelijke woorden, voor alle letters van het alfabet
     good_words = []
     for word in words_set:
         counter = 0
@@ -53,7 +54,8 @@ def possible_words(words_set, letters_on_display):
 
     return (good_words, letters_on_display)
 
-def filter(words, curse_words):
+def filter():
+    words, curse_words= get_files()
 
     exceptions = string.punctuation + string.digits + " \t\xb2\xb3\u2082\xb4"
     # punctuation, superscript, subscript, digits
@@ -74,16 +76,15 @@ def filter(words, curse_words):
 
     return (better_words - curse_words)
 
-
-def main():
+def get_files():
     with open('woorden.txt', 'r') as w:
         data = w.readlines()
     with open ('scheldwoorden.txt', 'r') as s:
         scheldwoorden = set(s.readlines())
-    good_words_set = filter(data, scheldwoorden)
-    possible_words_set, letters_on_display = possible_words(good_words_set, {'s', 'h', 'c', 'i', 'r', 'f', 't'})
-    pangrams_sorted = pangrams_only(possible_words_set, letters_on_display)
-    print (pangrams_sorted)
+    return (data, scheldwoorden)
+
+def main():
+    pass
 
 if __name__ == "__main__":
     main()
