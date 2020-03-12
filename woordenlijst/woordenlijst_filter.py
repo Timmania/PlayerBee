@@ -77,9 +77,9 @@ def filter():
     return (better_words - curse_words)
 
 def get_files():
-    with open('woorden.txt', 'r') as w:
+    with open('./woorden.txt', 'r') as w:
         data = w.readlines()
-    with open ('scheldwoorden.txt', 'r') as s:
+    with open ('./scheldwoorden.txt', 'r') as s:
         scheldwoorden = set(s.readlines())
     return (data, scheldwoorden)
 
