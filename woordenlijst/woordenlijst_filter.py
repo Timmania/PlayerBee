@@ -21,12 +21,6 @@
 import string
 import unidecode
 
-def transform_pangrams(pangrams):
-    grote_set = set()
-    kleine_set_van1_pangram = {char for pangram in pangrams for char in pangram}
-    for i in range(len(pangrams)):
-        grote_set.add(kleine_set_van1_pangram)
-
 def pangrams_only(words_possible, letters_used):
     letters_used = list(letters_used)
     almost_pangrams = []
