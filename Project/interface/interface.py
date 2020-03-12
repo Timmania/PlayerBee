@@ -10,7 +10,7 @@ def create_screen():
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
-    if h < 20 or w < 80:
+    if h < 20 or w < 100:
         print("screen is to small")
         exit(0)
     cs.noecho()
