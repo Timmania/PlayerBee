@@ -9,14 +9,14 @@ def main():
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
         play_screen(stdscr, h, w)  # clear screen, put lay out for the game on stdscr
-        add_word(stdscr, gamestate.get_letters(), h, w)  # add first word to screen
+        add_word(stdscr, gamestate.letters, h, w)  # add first word to screen
         list_of_results = []
 
         while 1:  # play game itself
             input_str = user_input(stdscr, h, w)  # ask user for input
 
             if input_str == "exit game":  # check if user wants to leave, show title screen
-                title_screen(stdscr, gamestate.get_score(), h, w)
+                title_screen(stdscr, gamestate.score, h, w)
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
@@ -31,7 +31,7 @@ def main():
                 else:
                     give_feedback(stdscr, result[0], h, w)
                     list_of_results.append((input_str, result[1]))
-                    update_words_found(stdscr, list_of_results, h, w, gamestate.get_score())
+                    update_words_found(stdscr, list_of_results, h, w, gamestate.score)
 
 
 if __name__ == '__main__':

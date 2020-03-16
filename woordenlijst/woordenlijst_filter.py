@@ -20,6 +20,12 @@
 import string
 import unidecode
 
+
+def pangrams():
+    words = filter()
+    return {word for word in words if len(word) == 7 and len(set(word)) == 7}
+
+
 def pangrams_only(letters_on_display):
     words_possible = possible_words(letters_on_display)
     letters_on_display = list(letters_on_display)
