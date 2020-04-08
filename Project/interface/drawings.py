@@ -64,7 +64,7 @@ def input_block(screen, center_y, center_x):
     """
     x = center_x - 24
     screen.addstr(center_y - 2, x, "Type a word:")
-    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 40)
+    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
 
 
 def words_found_block(screen, center_y, center_x):
@@ -100,7 +100,7 @@ def game_info_block(screen, center_y, center_x):
     screen.addstr(center_y - 2, x + 4, "{0:<44}".format("Type: 'new hive'  to get new letters"))
 
 
-def result_block(screen, center_y, center_x, tot_points):
+def result_block(screen, center_y, center_x, tot_points, words_guested):
     """
         Create the result screen.
         :return: nothing, just writes to the screen.
@@ -112,9 +112,14 @@ def result_block(screen, center_y, center_x, tot_points):
     screen.addstr(center_y, x,     "   \   / _ \| | | | '__| | '__/ _ \/ __| | | | | __|")
     screen.addstr(center_y + 1, x, "    | | (_) | |_| | |    | | |  __/\__ \ |_| | | |_ ")
     screen.addstr(center_y + 2, x, "    |_|\___/ \__,_|_|    |_|  \___||___/\__,_|_|\__|")
-    screen.addstr(center_y + 4, x, "{0:^52}".format(tot_points))
-    screen.addstr(center_y + 6, x, "{0:^52}".format("press Enter to go to the home screen"))
-    screen.addstr(center_y + 7, x, "{0:^52}".format("press Esc to exit game"))
+
+    screen.addstr(center_y + 5, x, "{0:^52}".format("Your total score was " + str(tot_points) + "!"))
+    if words_guested == 1:
+        screen.addstr(center_y + 6, x, "{0:^52}".format("You guested " + str(words_guested) + " word"))
+    else:
+        screen.addstr(center_y + 6, x, "{0:^52}".format("Your guested " + str(words_guested) + " words"))
+    screen.addstr(center_y + 9, x, "{0:^52}".format("press Enter to go to the home screen"))
+    screen.addstr(center_y + 11, x, "{0:^52}".format("press Esc to exit game"))
 
 
 def instructions_block(screen, center_y, center_x):

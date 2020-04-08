@@ -3,6 +3,7 @@ from Project.interface.Gamestate import GameState
 
 
 def main():
+    print("loading . . .")
     stdscr, h, w = create_screen()  # just initialize a screen, doesn't do anything
     gamestate = GameState()
 
@@ -14,10 +15,11 @@ def main():
         list_of_results = []
 
         while 1:  # play game itself
+            update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
             input_str = user_input(stdscr, h, w)  # ask user for input
 
             if input_str == "exit game":  # check if user wants to leave, show title screen
-                title_screen(stdscr, gamestate.score, h, w)
+                title_screen(stdscr, gamestate.score, h, w, len(list_of_results))
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
