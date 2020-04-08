@@ -7,9 +7,10 @@ class GameState:
         self.letters = []  # TODO dit moet gefixed worden
         self.score = 0
         self.word_set = set()  # possible_words(self.letters)
+        self.guesses = set()
         self.pangram_set = pangrams()
 
-        self.set_letters()  # TODO dit moet ook gefixed worden
+        self.set_letters()
 
     def set_letters(self):
         """
@@ -23,6 +24,7 @@ class GameState:
         new = [ch for ch in new]
         self.letters = random.shuffle(new)
         self.set_words()
+        self.guesses = set()
 
     def set_words(self):
         """
@@ -58,6 +60,11 @@ class GameState:
         :param guess: user input
         :return: list with user feedback or call to increase_score
         """
+        if guess in self.guesses:
+            return ["Word already guessed"]
+        else:
+            self.guesses.add(guess)
+
         if len(guess) < 4:
             return ["Word must be 4 letters minimum"]
         if not all(x in self.letters for x in list(guess)):
@@ -66,4 +73,15 @@ class GameState:
             return ["Middle letter not in guess"]
         if guess not in self.word_set:
             return ["Word not in word set"]
+
+        self.word_set.remove(guess)
         return self.increase_score(guess)
+
+    def get_hint(self):
+        """
+        Gives user hint
+        :return:
+        """
+        hint = random.choice(self.word_set)
+        return hint[:2]
+
