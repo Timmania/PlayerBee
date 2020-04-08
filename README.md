@@ -13,5 +13,5 @@ pip install windows-curses
 ```
 
 ```
-pip install unicode
+pip install unidecode
 ```
