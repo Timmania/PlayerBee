@@ -169,7 +169,7 @@ def title_screen(screen: object, tot_points: int, h, w):
             exit(0)
 
 
-def update_words_found(screen: object, list_of_results: list, h, w, tot_points):
+def update_words_found(screen: object, list_of_results: list, h, w, tot_points, len_set):
     """ update the word_list on the right of the screen.
         The word plus the score of that word will be shown.
         Only correct guessed words are shown.
@@ -198,7 +198,8 @@ def update_words_found(screen: object, list_of_results: list, h, w, tot_points):
         for n in range(1, n_lines):
             screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[p + n][0],
                                                                 list_of_results[p + n][1]))
-    screen.addstr(h - 2, x + 15, "{0:^4}".format(tot_points))
+    screen.addstr(h - 2, x + 18, "{0:^4}".format(tot_points))
+    screen.addstr(h - 2, x + 38, "{0:^4}".format(len_set))
     screen.refresh()
 
 

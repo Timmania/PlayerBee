@@ -8,6 +8,7 @@ def main():
 
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
+        gamestate.reset_game()
         play_screen(stdscr, h, w)  # clear screen, put lay out for the game on stdscr
         add_word(stdscr, gamestate.letters, h, w)  # add first word to screen
         list_of_results = []
@@ -20,7 +21,7 @@ def main():
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
-                pass  # add_word(stdscr, gamestate.set_letters(), h, w)
+                add_word(stdscr, gamestate.reset_game(), h, w)
 
             else:  # the input is a guess and it is processed
                 result = gamestate.is_correct(input_str)
@@ -31,7 +32,7 @@ def main():
                 else:
                     give_feedback(stdscr, result[0], h, w)
                     list_of_results.append((input_str, result[1]))
-                    update_words_found(stdscr, list_of_results, h, w, gamestate.score)
+                    update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
 
 
 if __name__ == '__main__':
