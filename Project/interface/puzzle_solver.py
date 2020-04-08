@@ -13,7 +13,7 @@ def find_match(letters):
 
     """
     guess = []
-    while guess not in possible_words:              # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
+    while guess not in possible_words(letters):              # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
         guess = give_guess(letters)
     return guess
 
