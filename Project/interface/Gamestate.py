@@ -7,22 +7,24 @@ class GameState:
         self.letters = []  # TODO dit moet gefixed worden
         self.score = 0
         self.word_set = set()  # possible_words(self.letters)
+        self.guesses = set()
         self.pangram_set = pangrams()
 
-        self.set_letters()  # TODO dit moet ook gefixed worden
-
-    def set_letters(self):
+    def reset_game(self):
         """
         Gets a new random pangram, removes it from the pangram list and shuffles the pangram's letters
         to get a new list of letters
 
         :return: nothing as it calls a new set command
         """
-        new = random.choice(self.pangram_set)
+        new = random.sample(self.pangram_set, 1)[0]
+
         self.pangram_set.remove(new)
-        new = [ch for ch in new]
-        self.letters = random.shuffle(new)
+        new = list(new)
+        random.shuffle(new)
+        self.letters = new
         self.set_words()
+        self.guesses = set()
 
     def set_words(self):
         """
@@ -45,8 +47,8 @@ class GameState:
             self.score += 1
             return ["+1", 1]
         elif sorted(list(word)) == sorted(self.letters):
-            self.score += 14
-            return ["PANGRAM FOUND! +14", len(word)]
+            self.score += len(word) + 7
+            return ["PANGRAM FOUND! +" + str(len(word) + 7), len(word) + 7]
         else:
             self.score += len(word)
             return ["+" + str(len(word)), len(word)]
@@ -58,6 +60,11 @@ class GameState:
         :param guess: user input
         :return: list with user feedback or call to increase_score
         """
+        if guess in self.guesses:
+            return ["Word already guessed"]
+        else:
+            self.guesses.add(guess)
+
         if len(guess) < 4:
             return ["Word must be 4 letters minimum"]
         if not all(x in self.letters for x in list(guess)):
@@ -66,4 +73,15 @@ class GameState:
             return ["Middle letter not in guess"]
         if guess not in self.word_set:
             return ["Word not in word set"]
+
+        self.word_set.remove(guess)
         return self.increase_score(guess)
+
+    def get_hint(self):
+        """
+        Gives user hint
+        :return: first two letters of a unguessed word
+        """
+        hint = random.choice(self.word_set)
+        return hint[:2]
+
