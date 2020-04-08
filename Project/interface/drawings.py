@@ -1,7 +1,12 @@
 import curses as cs
 from curses import textpad
 
+
 def player_b(screen, center_y, center_x):
+    """
+    Writes text "Player Bee" to the screen.
+    :return: nothing, just writes to the screen.
+    """
     x = center_x - 26
     screen.addstr(center_y - 4, x, "  _____  _                         ____             ")
     screen.addstr(center_y - 3, x, " |  __ \| |                       |  _ \            ")
@@ -14,6 +19,10 @@ def player_b(screen, center_y, center_x):
 
 
 def menu_block(screen, y, center_x, current_idx):
+    """
+        Writes the menu to the screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 26
     menu = ["Play game", "instructions", "Game rules", "Exit game"]
     for idx, row in enumerate(menu):
@@ -26,6 +35,10 @@ def menu_block(screen, y, center_x, current_idx):
 
 
 def hiven(screen, center_y, center_x):
+    """
+        Writes the hiven figure to the screen
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 19
     screen.addstr(center_y - 7, x, "                _______                 ")
     screen.addstr(center_y - 6, x, "              /         \               ")
@@ -45,12 +58,20 @@ def hiven(screen, center_y, center_x):
 
 
 def input_block(screen, center_y, center_x):
+    """
+        Creates a block on the screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 24
     screen.addstr(center_y - 2, x, "Type a word:")
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
 
 
 def words_found_block(screen, center_y, center_x):
+    """
+        Creates a block on the screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 24
     screen.addstr(center_y, x + 1, "{0:^47}".format("Words found"))
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
@@ -58,6 +79,10 @@ def words_found_block(screen, center_y, center_x):
 
 
 def game_info_block(screen, center_y, center_x):
+    """
+        Writes some game info on the screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 24
     screen.addstr(center_y, x + 1, "{0:^20}".format("total points : "))
     screen.addstr(center_y, x + 21, "{0:^4}".format("0"))
@@ -67,11 +92,15 @@ def game_info_block(screen, center_y, center_x):
 
 
 def result_block(screen, center_y, center_x, tot_points):
+    """
+        Create the result screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 26
     screen.addstr(center_y - 3, x, " __     __                                    _ _   ")
     screen.addstr(center_y - 2, x, " \ \   / /                                   | | |  ")
     screen.addstr(center_y - 1, x, "  \ \_/ /__  _   _ _ __   _ __ ___  ___ _   _| | |_ ")
-    screen.addstr(center_y, x, "   \   / _ \| | | | '__| | '__/ _ \/ __| | | | | __|")
+    screen.addstr(center_y, x,     "   \   / _ \| | | | '__| | '__/ _ \/ __| | | | | __|")
     screen.addstr(center_y + 1, x, "    | | (_) | |_| | |    | | |  __/\__ \ |_| | | |_ ")
     screen.addstr(center_y + 2, x, "    |_|\___/ \__,_|_|    |_|  \___||___/\__,_|_|\__|")
     screen.addstr(center_y + 4, x, "{0:^52}".format(tot_points))
@@ -80,6 +109,10 @@ def result_block(screen, center_y, center_x, tot_points):
 
 
 def instructions_block(screen, center_y, center_x):
+    """
+        Create the instructions screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 29
     screen.addstr(center_y - 3, x, " _____           _                   _   _                  ")
     screen.addstr(center_y - 2, x, "|_   _|         | |                 | | (_)                 ")
@@ -92,6 +125,10 @@ def instructions_block(screen, center_y, center_x):
 
 
 def rules_block(screen, center_y, center_x):
+    """
+        Create the rules screen.
+        :return: nothing, just writes to the screen.
+    """
     x = center_x - 14
     screen.addstr(center_y - 3, x, "  _____       _            ")
     screen.addstr(center_y - 2, x, " |  __ \     | |           ")
