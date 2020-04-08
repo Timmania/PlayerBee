@@ -19,10 +19,12 @@ class GameState:
 
         :return: nothing as it calls a new set command
         """
-        new = random.sample(self.pangram_set, 1)
+        new = random.sample(self.pangram_set, 1)[0]
+
         self.pangram_set.remove(new)
-        new = [ch for ch in new]
-        self.letters = random.shuffle(new)
+        new = list(new)
+        random.shuffle(new)
+        self.letters = new
         self.set_words()
         self.guesses = set()
 
