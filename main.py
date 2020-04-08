@@ -21,7 +21,8 @@ def main():
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
-                add_word(stdscr, gamestate.reset_game(), h, w)
+                gamestate.reset_game()
+                add_word(stdscr, gamestate.letters, h, w)
 
             else:  # the input is a guess and it is processed
                 result = gamestate.is_correct(input_str)
