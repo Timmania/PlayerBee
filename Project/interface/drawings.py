@@ -94,7 +94,7 @@ def game_info_block(screen, center_y, center_x):
     screen.addstr(center_y, x + 24, "{0:^4}".format("0"))
 
     screen.addstr(center_y, x + 31, "{0}".format("Words left : "))
-    screen.addstr(center_y, x + 44, "{0:^4}".format("0"))
+    screen.addstr(center_y, x + 44, "{0:^4}".format("???"))
 
     screen.addstr(center_y - 3, x + 4, "{0:<44}".format("Type: 'exit game' to exit"))
     screen.addstr(center_y - 2, x + 4, "{0:<44}".format("Type: 'new hive'  to get new letters"))
