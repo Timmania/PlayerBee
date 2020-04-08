@@ -22,7 +22,7 @@ import unidecode
 
 
 def pangrams():
-    words = filter()
+    words = filter_list
     return {word for word in words if len(word) == 7 and len(set(word)) == 7}
 
 
@@ -38,13 +38,14 @@ def pangrams_only(letters_on_display):
             else:
                 counter = counter + 1
                 if counter == len(letters_on_display):
-                    if len(word) == 7:                       # deze regel is alleen nodig als je perfecte super pangrams wil
+                    if len(word) == 7:  # deze regel is alleen nodig als je perfecte super pangrams wil
                         almost_pangrams.append(word)
     return set(almost_pangrams)
 
 
 def possible_words(letters_on_display):
-    words_set = filter()     #hier roept ie dus dat andere programma aan en krijgt ie de woordenlijst van alle mogelijke woorden, voor alle letters van het alfabet
+    words_set = filter_list  # hier roept ie dus dat andere programma aan en krijgt ie de woordenlijst van alle
+    # mogelijke woorden, voor alle letters van het alfabet
     good_words = []
     for word in words_set:
         counter = 0
@@ -52,16 +53,19 @@ def possible_words(letters_on_display):
             if car not in letters_on_display:
                 break
             counter += 1
-        # gaat net zo lang door totdat er break is voor het woord en anders net zo lang totdat alle chars zijn geweest
+            # gaat net zo lang door totdat er break is voor het woord en anders net zo lang totdat alle chars zijn
+            # geweest
 
             if len(word) == counter:
                 good_words.append(word)
-        # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan voegt hij hem hier toe
+        # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan
+        # voegt hij hem hier toe
 
     return (good_words)
 
+
 def filter():
-    words, curse_words= get_files()
+    words, curse_words = get_files()
 
     exceptions = string.punctuation + string.digits + " \t\xb2\xb3\u2082\xb4"
     # punctuation, superscript, subscript, digits
@@ -80,17 +84,23 @@ def filter():
     letters_in_word = {}
     # woorden met meer dan 7 verschillende letters
 
-    return (better_words - curse_words)
+    return better_words - curse_words
+
 
 def get_files():
     with open('woordenlijst/woorden.txt', 'r') as w:
         data = w.readlines()
-    with open ('woordenlijst/scheldwoorden.txt', 'r') as s:
+    with open('woordenlijst/scheldwoorden.txt', 'r') as s:
         scheldwoorden = set(s.readlines())
-    return (data, scheldwoorden)
+    return data, scheldwoorden
+
+
+filter_list = filter()
+
 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

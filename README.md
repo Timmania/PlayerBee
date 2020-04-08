@@ -9,9 +9,5 @@ Player Bee
 
 ## requirements
 ```
-pip install windows-curses
-```
-
-```
-pip install unidecode
+pip install -r requirements.txt
 ```
