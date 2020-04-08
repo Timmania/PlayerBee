@@ -28,3 +28,6 @@ def give_guess(letters):
     else:
         amount_of_letters = randint(10, 22)
     return [choice(letters) for i in range(amount_of_letters)]
+
+def main():
+    gamestate = GameState()
