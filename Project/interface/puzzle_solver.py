@@ -5,6 +5,7 @@ Wat dit programma doet is het pakt de 7 letters die in de hive staan en geeft ee
 
 from random import *
 from Project.interface.Gamestate import GameState
+from woordenlijst.woordenlijst_filter import possible_words
 
 
 def find_match(letters):
