@@ -88,9 +88,9 @@ def filter():
 
 
 def get_files():
-    with open('woordenlijst/woorden.txt', 'r') as w:
+    with open('woordenlijst/woorden.txt', 'r', encoding='utf-8') as w:
         data = w.readlines()
-    with open('woordenlijst/scheldwoorden.txt', 'r') as s:
+    with open('woordenlijst/scheldwoorden.txt', 'r', encoding='utf-8') as s:
         scheldwoorden = set(s.readlines())
     return data, scheldwoorden
 
