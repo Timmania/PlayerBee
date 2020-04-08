@@ -10,9 +10,7 @@ class GameState:
         self.guesses = set()
         self.pangram_set = pangrams()
 
-        self.set_letters()
-
-    def set_letters(self):
+    def reset_game(self):
         """
         Gets a new random pangram, removes it from the pangram list and shuffles the pangram's letters
         to get a new list of letters
@@ -82,7 +80,7 @@ class GameState:
     def get_hint(self):
         """
         Gives user hint
-        :return:
+        :return: first two letters of a unguessed word
         """
         hint = random.choice(self.word_set)
         return hint[:2]
