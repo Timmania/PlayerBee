@@ -13,8 +13,9 @@ def find_match(letters):
     Deze functie gaat net zo lang door totdat de guess een daadwerkelijk bestaand woord is.
 
     """
+    # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
     guess = []
-    while guess not in possible_words(letters):              # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
+    while guess not in possible_words(letters):
         guess = give_guess(letters)
     return guess
 
@@ -29,6 +30,7 @@ def give_guess(letters):
     else:
         amount_of_letters = randint(10, 22)
     return [choice(letters) for i in range(amount_of_letters)]
+
 
 def main():
     gamestate = GameState()

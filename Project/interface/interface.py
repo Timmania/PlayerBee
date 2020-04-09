@@ -78,16 +78,11 @@ def play_screen(screen: object, h, w):
     y = (h - 6) // 2
     x = w // 4
     drawings.hiven(screen, y, x)
+    drawings.input_block(screen, h - 2, x)      # create input block
 
-    # create input block
-    drawings.input_block(screen, h - 2, x)
-
-    # create words found block:
     x = (w // 4) * 3
-    drawings.words_found_block(screen, 2, x)
-
+    drawings.words_found_block(screen, 2, x)    # create words found block:
     drawings.game_info_block(screen, h - 2, x)
-
     screen.refresh()
 
 
@@ -146,7 +141,7 @@ def give_feedback(screen: object, feedback: str, h, w):
     screen.refresh()
 
 
-def title_screen(screen: object, tot_points: int, h, w):
+def title_screen(screen: object, tot_points: int, h, w, words_guested):
     """ After the user typed exit game, this screen will show.
         The user can go to the home screen or exit the game.
         :param w:
@@ -157,7 +152,7 @@ def title_screen(screen: object, tot_points: int, h, w):
     screen.clear()
     x = w // 2
     y = h // 2 - 5
-    drawings.result_block(screen, y, x, tot_points)
+    drawings.result_block(screen, y, x, tot_points, words_guested)
     screen.refresh()
     while 1:
         key = screen.getch()
