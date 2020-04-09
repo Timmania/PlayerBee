@@ -17,7 +17,7 @@ def find_match(letters):
     guess = []
     while guess not in possible_words(letters):
         guess = give_guess(letters)
-    return guess
+    return print(guess)
 
 
 def give_guess(letters):
