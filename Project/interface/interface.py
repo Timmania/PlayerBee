@@ -73,7 +73,6 @@ def play_screen(screen: object, h, w):
         :param w:
         :param h:
         :param screen:
-        :param difficulty:
     """
     # create hive figure
     y = (h - 6) // 2
