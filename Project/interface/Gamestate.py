@@ -83,5 +83,5 @@ class GameState:
         :return: first two letters of a unguessed word
         """
         hint = random.sample(self.word_set, 1)[0]
-        return hint[:2]
+        return [hint[:2], len(hint) - 2]
 
