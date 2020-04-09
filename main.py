@@ -30,8 +30,8 @@ def main():
                 difficulty_block(stdscr, h, w, difficulty)
 
             elif input_str == "give hint":
-                give_feedback(stdscr, "HINT '" + gamestate.get_hint() + "'", h, w)
-                # give_hint(stdscr, gamestate.get_hint(), h, w)
+                hint = "Hint '{0}{1}'".format(gamestate.get_hint()[0], "." * gamestate.get_hint()[1])
+                give_feedback(stdscr, hint, h, w)
 
             else:  # the input is a guess and it is processed
                 result = gamestate.is_correct(input_str)
