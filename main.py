@@ -26,7 +26,8 @@ def main():
                 add_word(stdscr, gamestate.letters, h, w)
 
             elif input_str == "give hint":
-                give_hint(stdscr, gamestate.get_hint(), h, w)
+                give_feedback(stdscr, "HINT '" + gamestate.get_hint() + "'", h, w)
+                # give_hint(stdscr, gamestate.get_hint(), h, w)
 
             else:  # the input is a guess and it is processed
                 result = gamestate.is_correct(input_str)
