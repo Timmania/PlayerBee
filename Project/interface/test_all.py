@@ -1,8 +1,9 @@
 from .Gamestate import GameState
+from woordenlijst.woordenlijst_filter import *
 
 
 class TestGameState:
-    def test_gamestate_1(self):
+    def test_gamestate(self):
         state = GameState()
         state.letters = ['i', 'a', 't', 'l', 'd', 'f', 's']
         state.set_words()
@@ -20,3 +21,9 @@ class TestGameState:
 
         assert len(state.get_hint()) == 2
         assert state.is_correct("saai") == ['+1', 1]
+        assert state.increase_score("staflid") == ['PANGRAM FOUND! +14', 14]
+
+
+class TestWoordenlijstFilter:
+    def test_woordenlijst_filter(self):
+        assert len(pangrams()) == 2632
