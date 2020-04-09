@@ -12,9 +12,11 @@
                 - Scheldwoorden (met behulp van een andere set van woorden)
 
                 De volgende woorden gaan we aanpassen:
-                - Woorden met 1 of meerdere accenten zoals ë é (hiervan wordt de letter(s) aangepast naar dezelfde letter(s) maar dan zonder het accent(en)),
+                - Woorden met 1 of meerdere accenten zoals ë é
+                  (hiervan wordt de letter(s) aangepast naar dezelfde letter(s) maar dan zonder het accent(en)),
                   hierbij wordt overigens in de regels gezet hoe je hier gebruik van kunt maken
-                - Woorden met een hoofdletter die niet op de eerste plek staan (worden aangepast naar hetzelfde woord lowercase,
+                - Woorden met een hoofdletter die niet op de eerste plek staan
+                  (worden aangepast naar hetzelfde woord lowercase,
                   dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
 """
 import string
@@ -61,7 +63,7 @@ def possible_words(letters_on_display):
         # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan
         # voegt hij hem hier toe
 
-    return (good_words)
+    return good_words
 
 
 def filter():
