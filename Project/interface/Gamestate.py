@@ -4,7 +4,7 @@ import random
 
 class GameState:
     def __init__(self):
-        self.letters = []  # TODO dit moet gefixed worden
+        self.letters = []
         self.score = 0
         self.word_set = set()  # possible_words(self.letters)
         self.guesses = set()
@@ -12,9 +12,8 @@ class GameState:
 
     def reset_game(self):
         """
-        Gets a new random pangram, removes it from the pangram list and shuffles the pangram's letters
-        to get a new list of letters
-
+        Gets a new random pangram, removes it from the pangram list and
+        shuffles the pangram's letters to get a new list of letters
         :return: nothing as it calls a new set command
         """
         new = random.sample(self.pangram_set, 1)[0]
@@ -28,8 +27,9 @@ class GameState:
 
     def set_words(self):
         """
-        Gets all the possible words from woordenlijst_filter.py using the letter array
-        and takes all words from that list that include the first letter of the array
+        Gets all the possible words from woordenlijst_filter.py
+        using the letter array and takes all words from that list
+        that include the first letter of the array
         """
         words = possible_words(self.letters)
         self.word_set = {word for word in words if self.letters[0] in word}
@@ -82,6 +82,6 @@ class GameState:
         Gives user hint
         :return: first two letters of a unguessed word
         """
-        hint = random.choice(self.word_set)
+        hint = random.sample(self.word_set, 1)[0]
         return hint[:2]
 
