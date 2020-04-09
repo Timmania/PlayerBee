@@ -141,6 +141,12 @@ def give_feedback(screen: object, feedback: str, h, w):
     screen.refresh()
 
 
+def give_hint(screen, hint, h, w):
+    x = w // 4 - 17
+    screen.addstr(h - 2, x, "{0}".format(hint))
+    screen.refresh()
+
+
 def title_screen(screen: object, tot_points: int, h, w, words_guested):
     """ After the user typed exit game, this screen will show.
         The user can go to the home screen or exit the game.

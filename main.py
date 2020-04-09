@@ -3,7 +3,6 @@ from Project.interface.Gamestate import GameState
 
 
 def main():
-    print("loading . . .")
     stdscr, h, w = create_screen()  # just initialize a screen, doesn't do anything
     gamestate = GameState()
 
@@ -25,6 +24,9 @@ def main():
             elif input_str == "new hive":  # if the user wants a new hive
                 gamestate.reset_game()
                 add_word(stdscr, gamestate.letters, h, w)
+
+            elif input_str == "give hint":
+                give_hint(stdscr, gamestate.get_hint(), h, w)
 
             else:  # the input is a guess and it is processed
                 result = gamestate.is_correct(input_str)
