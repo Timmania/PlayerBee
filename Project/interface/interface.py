@@ -73,6 +73,7 @@ def play_screen(screen: object, h, w):
         :param w:
         :param h:
         :param screen:
+        :param difficulty:
     """
     # create hive figure
     y = (h - 6) // 2
@@ -81,9 +82,19 @@ def play_screen(screen: object, h, w):
     drawings.input_block(screen, h - 2, x)      # create input block
 
     x = (w // 4) * 3
-    drawings.words_found_block(screen, 2, x)    # create words found block:
+    drawings.words_found_block(screen, 2, x, 0)    # create words found block:
     drawings.game_info_block(screen, h - 2, x)
     screen.refresh()
+
+
+def difficulty_block(screen: object, h, w, difficulty):
+    x = w // 4
+    drawings.difficulty_block(screen, 2, x, difficulty)
+
+
+def update_words_found_int(screen: object, h, w, words_found):
+    x = (w // 4) * 3
+    drawings.words_found_block(screen, 2, x, words_found)
 
 
 def add_word(screen: object, word: list, h, w):
@@ -199,7 +210,7 @@ def update_words_found(screen: object, list_of_results: list, h, w, tot_points, 
         for n in range(1, n_lines):
             screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[p + n][0],
                                                                 list_of_results[p + n][1]))
-    screen.addstr(h - 2, x + 18, "{0:^4}".format(tot_points))
+    screen.addstr(h - 2, x + 12, "{0:^4}".format(tot_points))
     screen.addstr(h - 2, x + 38, "{0:^4}".format(len_set))
     screen.refresh()
 

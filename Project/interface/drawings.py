@@ -67,13 +67,13 @@ def input_block(screen, center_y, center_x):
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
 
 
-def words_found_block(screen, center_y, center_x):
+def words_found_block(screen, center_y, center_x, words_found):
     """
         Creates a block on the screen.
         :return: nothing, just writes to the screen.
     """
     x = center_x - 24
-    screen.addstr(center_y, x + 1, "{0:^47}".format("Words found"))
+    screen.addstr(center_y, x + 1, "{0:^47}".format("Words found : " + "{0:^4}".format(str(words_found))))
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
     screen.addstr(center_y + 2, x + 4, "{0:<18}{1:>25}".format("Words:", "Points:"))
 
@@ -84,21 +84,40 @@ def game_info_block(screen, center_y, center_x):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 24
-    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 7)
-    textpad.rectangle(screen, center_y - 1, x + 8, center_y + 1, x + 28)
-    textpad.rectangle(screen, center_y - 1, x + 29, center_y + 1, x + 48)
+    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 23)
+    textpad.rectangle(screen, center_y - 1, x + 24, center_y + 1, x + 48)
 
-    screen.addstr(center_y, x + 1, "{0:^6}".format("HINT"))
+    screen.addstr(center_y, x + 1, "{0:^18}".format("Total points : "))
+    screen.addstr(center_y, x + 19, "{0:^4}".format("0"))
 
-    screen.addstr(center_y, x + 9, "{0}".format("Total points : "))
-    screen.addstr(center_y, x + 24, "{0:^4}".format("0"))
-
-    screen.addstr(center_y, x + 31, "{0}".format("Words left : "))
+    screen.addstr(center_y, x + 26, "{0:^18}".format("Words remaining : "))
     screen.addstr(center_y, x + 44, "{0:^4}".format("???"))
 
     screen.addstr(center_y - 4, x + 4, "{0:<44}".format("Type: 'exit game' to exit"))
     screen.addstr(center_y - 3, x + 4, "{0:<44}".format("Type: 'new hive'  to get new letters"))
     screen.addstr(center_y - 2, x + 4, "{0:<44}".format("Type: 'give hint'  to get the first 2 letters"))
+
+
+def get_difficulty(difficulty):
+    if difficulty < 20:
+        return "Player Bee(st)"
+    elif difficulty < 50:
+        return "Intermediate"
+    elif difficulty < 100:
+        return "Medium"
+    else:
+        return "Easy Beesy"
+
+
+def difficulty_block(screen, center_y, center_x, difficulty):
+    x = center_x - 24
+    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 17)
+    textpad.rectangle(screen, center_y - 1, x + 18, center_y + 1, x + 48)
+
+    screen.addstr(center_y, x + 2, "{0:^15}".format("Player Bee"))
+    screen.addstr(center_y, x + 20, "Difficulty : ")
+    screen.addstr(center_y, x + 33, "{0:^14}".format(get_difficulty(difficulty)))
+
 
 
 def result_block(screen, center_y, center_x, tot_points, words_guested):
