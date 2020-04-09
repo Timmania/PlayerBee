@@ -28,6 +28,7 @@ def main():
                 add_word(stdscr, gamestate.letters, h, w)
                 difficulty = len(gamestate.word_set)
                 difficulty_block(stdscr, h, w, difficulty)
+                give_feedback(stdscr, "", h, w)
 
             elif input_str == "give hint":
                 hint = "Hint '{0}{1}'".format(gamestate.get_hint()[0], "." * gamestate.get_hint()[1])
