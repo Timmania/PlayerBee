@@ -58,7 +58,7 @@ def possible_words(letters_on_display):
             # gaat net zo lang door totdat er break is voor het woord en anders net zo lang totdat alle chars zijn
             # geweest
 
-            if len(word) == counter:
+            if len(word) == counter and letters_on_display[0] in word:
                 good_words.append(word)
         # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan
         # voegt hij hem hier toe
