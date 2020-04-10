@@ -3,8 +3,8 @@ from Project.interface.Gamestate import GameState
 import curses as cs
 
 
-def main():
-    stdscr, h, w = create_screen()  # just initialize a screen, doesn't do anything
+def main(stdscr):
+    h, w = create_screen(stdscr)  # just initialize a screen, doesn't do anything
     gamestate = GameState()
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
@@ -61,4 +61,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    cs.wrapper(main)
