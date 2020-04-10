@@ -14,7 +14,6 @@ def main():
         add_word(stdscr, gamestate.letters, h, w)  # add first word to screen
         list_of_results = []
         results_corr = 0
-        print(gamestate.word_set)
 
         while 1:  # play game itself
             update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
