@@ -29,7 +29,12 @@ def give_guess(letters):
         amount_of_letters = randint(4, 11)
     else:
         amount_of_letters = randint(10, 22)
-    return [choice(letters) for i in range(amount_of_letters)]
+    guess = [choice(letters) for i in range(amount_of_letters)]
+    if letters[0] not in guess:
+        guess.extend(letters[0])
+        shuffle(guess)
+    return "".join(guess)
+
 
 
 def main():
