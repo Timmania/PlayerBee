@@ -31,3 +31,4 @@ Huub Exel did everything that had to do with the wordlist.
 
 All three students did the debugging.
 All the three students helped eachother with idea's and coding.
+We tried to devide the workload as fair as possible among our group.
