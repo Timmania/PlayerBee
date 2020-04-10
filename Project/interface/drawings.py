@@ -99,11 +99,11 @@ def game_info_block(screen, center_y, center_x):
 
 
 def get_difficulty(difficulty):
-    if difficulty < 20:
+    if difficulty <= 20:
         return "Player Bee(st)"
-    elif difficulty < 50:
+    elif difficulty <= 50:
         return "Intermediate"
-    elif difficulty < 100:
+    elif difficulty <= 100:
         return "Medium"
     else:
         return "Easy Beesy"

@@ -146,8 +146,8 @@ def give_feedback(screen: object, feedback: str, h, w):
         :param screen:
         :param feedback:
     """
-    x = w // 4 - 6
-    screen.addstr(h - 4, x, "{0:>30}".format(feedback))
+    x = w // 4 - 10
+    screen.addstr(h - 4, x, "{0:>34}".format(feedback))
     screen.refresh()
 
 

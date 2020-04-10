@@ -9,11 +9,12 @@ def main():
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
         gamestate.reset_game()
-        difficulty = len(gamestate.word_set)
         play_screen(stdscr, h, w)  # clear screen, put lay out for the game on stdscr
-        difficulty_block(stdscr, h, w, difficulty)
+        difficulty_block(stdscr, h, w, len(gamestate.word_set))
         add_word(stdscr, gamestate.letters, h, w)  # add first word to screen
         list_of_results = []
+        results_corr = 0
+        print(gamestate.word_set)
 
         while 1:  # play game itself
             update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
@@ -26,8 +27,7 @@ def main():
             elif input_str == "new hive":  # if the user wants a new hive
                 gamestate.reset_game()
                 add_word(stdscr, gamestate.letters, h, w)
-                difficulty = len(gamestate.word_set)
-                difficulty_block(stdscr, h, w, difficulty)
+                difficulty_block(stdscr, h, w, len(gamestate.word_set))
                 give_feedback(stdscr, "", h, w)
 
             elif input_str == "give hint":
@@ -41,12 +41,24 @@ def main():
                     give_feedback(stdscr, result[0], h, w)
 
                 else:
-                    give_feedback(stdscr, result[0], h, w)
                     list_of_results.append((input_str, result[1]))
+                    if len(gamestate.word_set) == 0:
+                        gamestate.reset_game()
+                        add_word(stdscr, gamestate.letters, h, w)
+                        difficulty_block(stdscr, h, w, len(gamestate.word_set))
+                        list_of_results.append(("All words found!", 20))
+                        give_feedback(stdscr, "You found all words! Congrats! +20", h, w)
+                        # gamestate.score + 20 doesnt work todo gamestate.score + 20
+                        results_corr += 1
+                    else:
+                        give_feedback(stdscr, result[0], h, w)
                     update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
-                    update_words_found_int(stdscr, h, w, len(list_of_results))
+                    update_words_found_int(stdscr, h, w, len(list_of_results) - results_corr)
     cs.echo()
     cs.curs_set(1)
+    stdscr.keypad(False)
+    cs.nocbreak()
+    cs.endwin()
 
 
 if __name__ == '__main__':
