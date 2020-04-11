@@ -24,7 +24,7 @@ def find_match(letters):
 
 def give_guess(letters):
     """
-    This function returns a guess that could possibly be a word in the list of possible_words
+    This function returns a guess that could possibly be a word in the list of possible_words.
     :param: The 7 letters that are on screen when playing the game
     :return: returns a guess
     """
