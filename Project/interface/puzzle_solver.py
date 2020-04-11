@@ -1,6 +1,6 @@
 """
-Wat dit programma doet is het pakt de 7 letters die in de hive staan en geeft een combinatie van deze letters terug
-
+    This program tries to solve the puzzle, 1 word at the time.
+    It stops when it actually found 1 word. It prints that word on the screen.
 """
 
 from random import *
@@ -15,7 +15,7 @@ def find_match(letters):
     :param: The 7 letters that are on screen when playing the game
     :return: A guess that is actually in the list, so a right guessed guess
     """
-    # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
+    # possible_words are the words that you can possibly make with the 7 letters on screen when playing
     guess = []
     while guess not in possible_words(letters):
         guess = give_guess(letters)
@@ -36,7 +36,7 @@ def give_guess(letters):
     if letters[0] not in guess:                 # Middle letter of hive has to be in guess (in this case letters[0])
         guess.extend(letters[0])
         shuffle(guess)
-    return "".join(guess)
+    return "".join(guess)                       # returns guess as string
 
 
 def main():
