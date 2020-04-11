@@ -23,19 +23,19 @@ def find_match(letters):
 
 def give_guess(letters):
     """
-    Deze functie neemt de letters in de hive en geeft met deze letters een guess in deze voor de letters in deze hive
-
+    This function returns a guess that could possibly be a word in the list of possible_words
+    :param: The 7 letters that are on screen when playing the game
+    :return: returns a guess
     """
-    if random() < 0.8:
-        amount_of_letters = randint(4, 11)
+    if random() < 0.8:                          # the change that a word has 10 or more letters is very small so,
+        amount_of_letters = randint(4, 11)      # to make the system faster i gave it 20% change to be a large word.
     else:
         amount_of_letters = randint(10, 22)
     guess = [choice(letters) for i in range(amount_of_letters)]
-    if letters[0] not in guess:
+    if letters[0] not in guess:                 # Middle letter of hive has to be in guess (in this case letters[0])
         guess.extend(letters[0])
         shuffle(guess)
     return "".join(guess)
-
 
 
 def main():
