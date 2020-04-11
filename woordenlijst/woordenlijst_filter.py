@@ -25,14 +25,23 @@ from pathlib import Path
 
 
 def pangrams():
+    """
+    This function returns perfect pangrams from the 7 letters that are on screen
+    :return: all perfect pangrams that are possible with the 7 letters on screen
+    """
     words = filter_list
     return {word for word in words if len(word) == 7 and len(set(word)) == 7}
 
 
 def pangrams_only(letters_on_display):
+    """
+    This function returns pangrams from the 7 letters that are on screen
+    :param: The 7 seven letters that are on display in the game
+    :return: all pangrams that are possible with the 7 letters on screen
+    """
     words_possible = possible_words(letters_on_display)
     letters_on_display = list(letters_on_display)
-    almost_pangrams = []
+    almost_perfect_pangrams = []
     for word in words_possible:
         counter = 0
         for letter in letters_on_display:
@@ -42,11 +51,17 @@ def pangrams_only(letters_on_display):
                 counter = counter + 1
                 if counter == len(letters_on_display):
                     if len(word) == 7:  # deze regel is alleen nodig als je perfecte super pangrams wil
-                        almost_pangrams.append(word)
-    return set(almost_pangrams)
+                        almost_perfect_pangrams.append(word)
+    return set(almost_perfect_pangrams)
 
 
 def possible_words(letters_on_display):
+    """
+    This function returns every word that could be guessed with the 7 letters on screen that has the middle letter,
+    and isn't filtered out already
+    :param: The 7 seven letters that are on display in the game
+    :return: all verified words that can be made from the 7 letters on screen.
+    """
     words_set = filter_list  # hier roept ie dus dat andere programma aan en krijgt ie de woordenlijst van alle
     # mogelijke woorden, voor alle letters van het alfabet
     good_words = []
@@ -68,6 +83,12 @@ def possible_words(letters_on_display):
 
 
 def filter():
+    """
+    This function takes the words_list and cusswords and cleans the words in the words_list,
+    till they are good enough to use for words in the spelling bee. The outcome is every possible word,
+    that could be guessed en would be right.
+    :return: set with all words that fulfill the needs of the spelling bee rules
+    """
     words, curse_words = get_files()
 
     exceptions = string.punctuation + string.digits + " \t\xb2\xb3\u2082\xb4"
@@ -91,6 +112,11 @@ def filter():
 
 
 def get_files():
+    """
+    This function gets data from woorden.txt in the from of normal Dutch words
+    and it gets data from scheldwoorden.txt in the form of Dutch cusswords.
+    :return: 2 sorts of data as in a wordlist with normal words and a list with cusswords
+    """
     woorden_path = Path(__file__).parent / "woorden.txt"
     scheldwoorden_path = Path(__file__).parent / "scheldwoorden.txt"
     with open(woorden_path, 'r', encoding='utf-8') as w:
@@ -101,6 +127,9 @@ def get_files():
 
 
 filter_list = filter()
+# This is a global variable used for storing the filtered list.
+# Once someone presses new hive, the system will not execute the whole filter again,
+# but it will just go to this variable where the list is already stored (saves lots of time).
 
 
 def main():
