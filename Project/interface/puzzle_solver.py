@@ -10,7 +10,8 @@ from woordenlijst.woordenlijst_filter import possible_words
 
 def find_match(letters):
     """
-    Deze functie gaat net zo lang door totdat de guess een daadwerkelijk bestaand woord is.
+    This function goes on until a guess from give_guess is actually a good one.
+    When it is a good one it prints it on screen.
     :param: The 7 letters that are on screen when playing the game
     :return: A guess that is actually in the list, so a right guessed guess
     """
@@ -18,7 +19,7 @@ def find_match(letters):
     guess = []
     while guess not in possible_words(letters):
         guess = give_guess(letters)
-    return print(guess)
+    print(guess)
 
 
 def give_guess(letters):
