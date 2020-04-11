@@ -11,7 +11,8 @@ from woordenlijst.woordenlijst_filter import possible_words
 def find_match(letters):
     """
     Deze functie gaat net zo lang door totdat de guess een daadwerkelijk bestaand woord is.
-
+    :param: The 7 letters that are on screen when playing the game
+    :return: A guess that is actually in the list, so a right guessed guess
     """
     # possible_words zijn hier de woorden die je mogelijk kunt maken met de 7 letters
     guess = []
