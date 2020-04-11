@@ -21,6 +21,7 @@
 """
 import string
 import unidecode
+from pathlib import Path
 
 
 def pangrams():
@@ -90,9 +91,11 @@ def filter():
 
 
 def get_files():
-    with open('woordenlijst/woorden.txt', 'r', encoding='utf-8') as w:
+    woorden_path = Path(__file__).parent / "woorden.txt"
+    scheldwoorden_path = Path(__file__).parent / "scheldwoorden.txt"
+    with open(woorden_path, 'r', encoding='utf-8') as w:
         data = w.readlines()
-    with open('woordenlijst/scheldwoorden.txt', 'r', encoding='utf-8') as s:
+    with open(scheldwoorden_path, 'r', encoding='utf-8') as s:
         scheldwoorden = set(s.readlines())
     return data, scheldwoorden
 
