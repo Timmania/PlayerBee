@@ -1,23 +1,21 @@
 #!/usr/bin/python3
 """
-                Dit programma filtert alle woorden op volgende de specificaties:
+    This program filters all words in the list and it does this with the following procedure:
 
-                De volgende woorden gaan we verwijderen:
-                - woorden met meer dan 7 verschillende letters
-                - Woorden met minder dan 4 letters
-                - Woorden met getallen
-                - Woorden met punctuatie
-                - Woorden met als eerste letter een hoofdletter
-                - Woorden met een laag of hoog getal zoals CO₂-heffing (superscript, subscript)
-                - Scheldwoorden (met behulp van een andere set van woorden)
+    Words that have one or more of these specifications will be deleted from the list:
+    - Words with more than 7 different letters
+    - Words with a less than 4 letters in length
+    - Words with digits in them
+    - Words with punctuation
+    - Words that have an uppercase letter as their first letter (proper nouns)
+    - Words with superscript or subscript
+    - swearwords(cussing) (will be in another list to filter them out of the usefull words)
 
-                De volgende woorden gaan we aanpassen:
-                - Woorden met 1 of meerdere accenten zoals ë é
-                  (hiervan wordt de letter(s) aangepast naar dezelfde letter(s) maar dan zonder het accent(en)),
-                  hierbij wordt overigens in de regels gezet hoe je hier gebruik van kunt maken
-                - Woorden met een hoofdletter die niet op de eerste plek staan
-                  (worden aangepast naar hetzelfde woord lowercase,
-                  dit zodat we bij het maken van het programma geen uitzondering hoeven te maken
+    Words that we are going to change:
+    - Words with 1 or more accents, for example: ë é
+      (The letter will be changed to the same letter without the accent(s)
+    - Words that have an uppercase letter which is not their first letter
+      (Will be changed to the same word but lowercase)
 """
 import string
 import unidecode
@@ -50,7 +48,7 @@ def pangrams_only(letters_on_display):
             else:
                 counter = counter + 1
                 if counter == len(letters_on_display):
-                    if len(word) == 7:  # deze regel is alleen nodig als je perfecte super pangrams wil
+                    if len(word) == 7:
                         almost_perfect_pangrams.append(word)
     return set(almost_perfect_pangrams)
 
