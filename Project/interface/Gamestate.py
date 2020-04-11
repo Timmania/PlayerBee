@@ -46,7 +46,7 @@ class GameState:
         if len(word) == 4:
             self.score += 1
             return ["+1", 1]
-        elif sorted(list(word)) == sorted(self.letters):
+        elif sorted(list(set(list(word)))) == sorted(self.letters):
             self.score += len(word) + 7
             return ["PANGRAM FOUND! +" + str(len(word) + 7), len(word) + 7]
         else:
