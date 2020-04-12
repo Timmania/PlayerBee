@@ -10,8 +10,10 @@ def create_screen():
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
-    if h < 20 or w < 100:
-        print("screen is to small")
+    if h < 28 or w < 100:
+        print("screen is to small, try making it bigger. \n"
+              "height must be 28 lines or more. \n"
+              "Width must be 100 characters or more. \n")
         exit(0)
     cs.noecho()
     cs.curs_set(0)
@@ -135,7 +137,7 @@ def user_input(screen: object, h, w) -> str:
         :param h:
         :type screen: object
     """
-    x = w // 4 - 17
+    x = w // 4 - 22
     inp_scr = screen.subwin(1, 21, h - 2, x)
     cs.curs_set(1)
     cs.echo()
