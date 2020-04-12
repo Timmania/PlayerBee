@@ -20,7 +20,7 @@ def main():
             input_str = user_input(stdscr, h, w)  # ask user for input
 
             if input_str == "exit game":  # check if user wants to leave, show title screen
-                title_screen(stdscr, gamestate.score, h, w, len(list_of_results))
+                title_screen(stdscr, gamestate.score, h, w, len(list_of_results) - results_corr)
                 break
 
             elif input_str == "new hive":  # if the user wants a new hive
@@ -46,8 +46,8 @@ def main():
                         add_word(stdscr, gamestate.letters, h, w)
                         difficulty_block(stdscr, h, w, len(gamestate.word_set))
                         list_of_results.append(("All words found!", 20))
-                        give_feedback(stdscr, "You found all words! Congrats! +20", h, w)
-                        # gamestate.score + 20 doesnt work todo gamestate.score + 20
+                        give_feedback(stdscr, gamestate.increase_score("all_found"), h, w)
+
                         results_corr += 1
                     else:
                         give_feedback(stdscr, result[0], h, w)
