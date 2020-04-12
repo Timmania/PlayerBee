@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    This program filters all words in the list and it does this with the following procedure:
+This program filters all words in the list and it does this with the following procedure:
 
     Words that have one or more of these specifications will be deleted from the list:
     - Words with more than 7 different letters
@@ -16,6 +16,10 @@
       (The letter will be changed to the same letter without the accent(s)
     - Words that have an uppercase letter which is not their first letter
       (Will be changed to the same word but lowercase)
+
+This program also gives the words that are possible with the 7 letters on screen (which include the middle letter).
+And it gives pangrams which can be made with the 7 letters on screen.
+
 """
 import string
 import unidecode
@@ -90,21 +94,21 @@ def filter():
     words, curse_words = get_files()
 
     exceptions = string.punctuation + string.digits + " \t\xb2\xb3\u2082\xb4"
-    # punctuation, superscript, subscript, digits
+    # This line includes punctuation, superscript, subscript and digits, out of the words. (these are exceptions)
 
     clean_list = [word.replace('\n', "") for word in words if not any(p in word for p in exceptions)]
-    # haalt hier de enters uit elk element en checkt op de exceptions
+    # Clears every element from newlines and filters out words that have "an exception" in them.
 
     clean_list = {unidecode.unidecode(word) for word in clean_list if len(word) >= 4 and not word[0] == word[0].upper()}
-    # Eerste letter een hoofdletter, lengte van woord, accenten
+    # This filters out accents, words with a length less than 4 letters and, words where the first letter is uppercase.
 
     better_words = set()
     for word in clean_list:
         letters_in_word = {char for char in word}
         if len(letters_in_word) < 8:
             better_words.add(word)
-    letters_in_word = {}
-    # woorden met meer dan 7 verschillende letters
+    letters_in_word = {}                            # TODO ff checken wat deze regel doet en in hoeverre hij nodig is.
+    # This filters out words that have more than 7 different letter in them.
 
     return better_words - curse_words
 
@@ -112,8 +116,8 @@ def filter():
 def get_files():
     """
     This function gets data from woorden.txt in the from of normal Dutch words
-    and it gets data from scheldwoorden.txt in the form of Dutch cusswords.
-    :return: 2 sorts of data as in a wordlist with normal words and a list with cusswords
+    and it gets data from scheldwoorden.txt in the form of Dutch swearwords(cussing).
+    :return: 2 sorts of data as in, a list with normal words and a list with swearwords(cussing)
     """
     woorden_path = Path(__file__).parent / "woorden.txt"
     scheldwoorden_path = Path(__file__).parent / "scheldwoorden.txt"
