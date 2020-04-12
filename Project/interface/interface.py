@@ -10,10 +10,10 @@ def create_screen():
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
-    if h < 28 or w < 100:
+    if h < 28 or w < 105:
         print("screen is to small, try making it bigger. \n"
               "height must be 28 lines or more. \n"
-              "Width must be 100 characters or more. \n")
+              "Width must be 105 columns or more. \n")
         exit(0)
     cs.noecho()
     cs.curs_set(0)
@@ -52,9 +52,8 @@ def welcome_screen(screen: object, h, w):
                 screen.refresh()
                 break
             if current_idx == 1:
-                drawings.instructions_block(screen, y, x)
+                drawings.instructions_block(screen, y, x, h, w)
                 screen.refresh()
-                screen.getch()
             if current_idx == 2:
                 drawings.rules_block(screen, y, x)
                 screen.refresh()
