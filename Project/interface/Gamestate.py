@@ -43,6 +43,9 @@ class GameState:
         :param word: correct guess
         :return: list with message and score as integer
         """
+        if word == "all_found":
+            self.score += 20
+            return "You found all words! Congrats! +20"
         if len(word) == 4:
             self.score += 1
             return ["+1", 1]

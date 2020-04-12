@@ -10,8 +10,10 @@ def create_screen():
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
-    if h < 20 or w < 100:
-        print("screen is to small")
+    if h < 28 or w < 100:
+        print("screen is to small, try making it bigger. \n"
+              "height must be 28 lines or more. \n"
+              "Width must be 100 characters or more. \n")
         exit(0)
     cs.noecho()
     cs.curs_set(0)
@@ -62,14 +64,14 @@ def welcome_screen(screen: object, h, w):
                 screen.refresh()
                 cs.echo()
                 cs.curs_set(1)
-                stdscr.keypad(False)
+                screen.keypad(False)
                 cs.nocbreak()
                 cs.endwin()
                 exit(0)
         if key == 27:
             cs.echo()
             cs.curs_set(1)
-            stdscr.keypad(False)
+            screen.keypad(False)
             cs.nocbreak()
             cs.endwin()
             exit(0)
@@ -135,7 +137,7 @@ def user_input(screen: object, h, w) -> str:
         :param h:
         :type screen: object
     """
-    x = w // 4 - 17
+    x = w // 4 - 22
     inp_scr = screen.subwin(1, 21, h - 2, x)
     cs.curs_set(1)
     cs.echo()
@@ -189,7 +191,7 @@ def title_screen(screen: object, tot_points: int, h, w, words_guested):
         if key == 27:
             cs.echo()
             cs.curs_set(1)
-            stdscr.keypad(False)
+            screen.keypad(False)
             cs.nocbreak()
             cs.endwin()
             exit(0)
