@@ -60,8 +60,18 @@ def welcome_screen(screen: object, h, w):
             if current_idx == 3:
                 screen.clear()
                 screen.refresh()
+                cs.echo()
+                cs.curs_set(1)
+                stdscr.keypad(False)
+                cs.nocbreak()
+                cs.endwin()
                 exit(0)
         if key == 27:
+            cs.echo()
+            cs.curs_set(1)
+            stdscr.keypad(False)
+            cs.nocbreak()
+            cs.endwin()
             exit(0)
 
         drawings.menu_block(screen, y + 6, x, current_idx)
@@ -177,6 +187,11 @@ def title_screen(screen: object, tot_points: int, h, w, words_guested):
             screen.refresh()
             break
         if key == 27:
+            cs.echo()
+            cs.curs_set(1)
+            stdscr.keypad(False)
+            cs.nocbreak()
+            cs.endwin()
             exit(0)
 
 

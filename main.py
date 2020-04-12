@@ -54,12 +54,6 @@ def main():
                     update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
                     update_words_found_int(stdscr, h, w, len(list_of_results) - results_corr)
 
-    cs.echo()
-    cs.curs_set(1)
-    stdscr.keypad(False)
-    cs.nocbreak()
-    cs.endwin()
-
 
 if __name__ == '__main__':
     main()
