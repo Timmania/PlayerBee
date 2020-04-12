@@ -28,33 +28,11 @@ from pathlib import Path
 
 def pangrams():
     """
-    This function returns perfect pangrams from the 7 letters that are on screen
-    :return: all perfect pangrams that are possible with the 7 letters on screen
+    This function returns pangrams from the 7 letters that are on screen
+    :return: pangrams that are possible with the 7 letters on screen
     """
     words = filter_list
     return {word for word in words if len(word) == 7 and len(set(word)) == 7}
-
-
-def pangrams_only(letters_on_display):
-    """
-    This function returns pangrams from the 7 letters that are on screen
-    :param: The 7 seven letters that are on display in the game
-    :return: all pangrams that are possible with the 7 letters on screen
-    """
-    words_possible = possible_words(letters_on_display)
-    letters_on_display = list(letters_on_display)
-    almost_perfect_pangrams = []
-    for word in words_possible:
-        counter = 0
-        for letter in letters_on_display:
-            if letter not in word:
-                break
-            else:
-                counter = counter + 1
-                if counter == len(letters_on_display):
-                    if len(word) == 7:
-                        almost_perfect_pangrams.append(word)
-    return set(almost_perfect_pangrams)
 
 
 def possible_words(letters_on_display):
@@ -64,8 +42,9 @@ def possible_words(letters_on_display):
     :param: The 7 seven letters that are on display in the game
     :return: all verified words that can be made from the 7 letters on screen.
     """
-    words_set = filter_list  # hier roept ie dus dat andere programma aan en krijgt ie de woordenlijst van alle
-    # mogelijke woorden, voor alle letters van het alfabet
+    words_set = filter_list
+    # all words that passed the filtering stage
+
     good_words = []
     for word in words_set:
         counter = 0
@@ -73,13 +52,13 @@ def possible_words(letters_on_display):
             if car not in letters_on_display:
                 break
             counter += 1
-            # gaat net zo lang door totdat er break is voor het woord en anders net zo lang totdat alle chars zijn
-            # geweest
+            # Checks if character is in current word, if it is not the case, it will cause a break,
+            # otherwise the word passes this section
 
             if len(word) == counter and letters_on_display[0] in word:
                 good_words.append(word)
-        # zijn alle chars geweest, dus heeft het algo bevestigd dat alle chars in de letters_on_display zaten dan
-        # voegt hij hem hier toe
+            # The word will be appended when all the letters match the letters on screen and
+            # if the middle letter of the hive is in the word.
 
     return good_words
 
@@ -107,8 +86,8 @@ def filter():
         letters_in_word = {char for char in word}
         if len(letters_in_word) < 8:
             better_words.add(word)
-    letters_in_word = {}                            # TODO ff checken wat deze regel doet en in hoeverre hij nodig is.
-    # This filters out words that have more than 7 different letter in them.
+        letters_in_word = {}
+    # This filters out words that have more than 7 different letters in them.
 
     return better_words - curse_words
 
