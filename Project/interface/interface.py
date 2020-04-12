@@ -2,13 +2,13 @@ import curses as cs
 from Project.interface import drawings
 
 
-def create_screen(screen):
+def create_screen():
     """ This function initializes a screen.
         It also changes some settings to work properly.
         checks if the screen is big enough to fit elements nicely.
         :return: screen
     """
-
+    screen = cs.initscr()
     h, w = screen.getmaxyx()
     if h < 20 or w < 100:
         print("screen is to small")
@@ -19,7 +19,7 @@ def create_screen(screen):
     screen.keypad(1)
     cs.start_color()
     cs.init_pair(1, cs.COLOR_BLACK, cs.COLOR_WHITE)
-    return h, w
+    return screen, h, w
 
 
 def welcome_screen(screen: object, h, w):

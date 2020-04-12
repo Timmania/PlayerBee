@@ -3,8 +3,8 @@ from Project.interface.Gamestate import GameState
 import curses as cs
 
 
-def main(stdscr):
-    h, w = create_screen(stdscr)  # just initialize a screen, doesn't do anything
+def main():
+    stdscr, h, w = create_screen()  # just initialize a screen, doesn't do anything
     gamestate = GameState()
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
@@ -54,6 +54,12 @@ def main(stdscr):
                     update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
                     update_words_found_int(stdscr, h, w, len(list_of_results) - results_corr)
 
+    cs.echo()
+    cs.curs_set(1)
+    stdscr.keypad(False)
+    cs.nocbreak()
+    cs.endwin()
+
 
 if __name__ == '__main__':
-    cs.wrapper(main)
+    main()
