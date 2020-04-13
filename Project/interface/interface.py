@@ -200,11 +200,14 @@ def title_screen(screen: object, tot_points: int, h, w, words_guested):
             exit(0)
 
 
-def update_words_found(screen: object, list_of_results: list, h, w, tot_points, len_set):
+def update_words_found(screen: object, list_of_results: list, h, w,
+                       tot_points, len_set):
     """ update the word_list on the right of the screen.
         The word plus the score of that word will be shown.
         Only correct guessed words are shown.
         TODO fix this function
+        :param len_set:
+        :param tot_points:
         :param w:
         :param h:
         :param screen:
@@ -216,19 +219,23 @@ def update_words_found(screen: object, list_of_results: list, h, w, tot_points, 
     n_lines = (h - 10) // 4 * 3
     if n_words <= n_lines:
         for n in range(0, n_words):
-            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[n][0],
-                                                            list_of_results[n][1]))
+            screen.addstr(y + n, x,
+                          "{0:<20}{1:>17}".format(list_of_results[n][0],
+                                                  list_of_results[n][1]))
     elif n_words == n_lines:
         screen.addstr(y, x, "{0:<19}{1:>18}".format("...", "..."))
         for n in range(1, n_lines):
-            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[n][0],
-                                                            list_of_results[n][1]))
+            screen.addstr(y + n, x,
+                          "{0:<20}{1:>17}".format(list_of_results[n][0],
+                                                  list_of_results[n][1]))
     else:
         screen.addstr(y, x, "{0:<19}{1:>18}".format("...", "..."))
         p = n_words - n_lines
         for n in range(1, n_lines):
-            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[p + n][0],
-                                                            list_of_results[p + n][1]))
+            screen.addstr(y + n, x,
+                          "{0:<20}{1:>17}".format(list_of_results[p + n][0],
+                                                  list_of_results[p + n][1]))
+
     screen.addstr(h - 2, x + 12, "{0:^4}".format(tot_points))
     screen.addstr(h - 2, x + 38, "{0:^4}".format(len_set))
     screen.refresh()
