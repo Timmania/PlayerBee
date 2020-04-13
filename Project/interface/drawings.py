@@ -25,7 +25,7 @@ def menu_block(screen, y, center_x, current_idx):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 26
-    menu = ["Play game", "instructions", "Game rules", "Exit game"]
+    menu = ["Speel spel", "instructies", "Punten systeem", "Spel verlaten"]
     for idx, row in enumerate(menu):
         if idx == current_idx:
             screen.attron(cs.color_pair(1))
@@ -64,7 +64,7 @@ def input_block(screen, center_y, center_x):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 24
-    screen.addstr(center_y - 2, x, "Type a word:")
+    screen.addstr(center_y - 2, x, "Type een woord:")
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
 
 
@@ -74,9 +74,9 @@ def words_found_block(screen, center_y, center_x, words_found):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 24
-    screen.addstr(center_y, x + 1, "{0:^47}".format("Words found : " + "{0:^4}".format(str(words_found))))
+    screen.addstr(center_y, x + 1, "{0:^47}".format("Woorden gevonden : " + "{0:^4}".format(str(words_found))))
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
-    screen.addstr(center_y + 2, x + 4, "{0:<18}{1:>25}".format("Words:", "Points:"))
+    screen.addstr(center_y + 2, x + 4, "{0:<17}{1:>25}".format("Woorden:", "Punten:"))
 
 
 def game_info_block(screen, center_y, center_x):
@@ -88,15 +88,14 @@ def game_info_block(screen, center_y, center_x):
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 23)
     textpad.rectangle(screen, center_y - 1, x + 24, center_y + 1, x + 48)
 
-    screen.addstr(center_y, x + 1, "{0:^18}".format("Total points : "))
+    screen.addstr(center_y, x + 1, "{0:^18}".format("Totaal punten : "))
     screen.addstr(center_y, x + 19, "{0:^4}".format("0"))
 
-    screen.addstr(center_y, x + 26, "{0:^18}".format("Words remaining : "))
+    screen.addstr(center_y, x + 26, "{0:^18}".format("Woorden over : "))
     screen.addstr(center_y, x + 44, "{0:^4}".format("???"))
 
-    screen.addstr(center_y - 4, x + 4, "{0:<44}".format("Type: 'exit game' to exit"))
-    screen.addstr(center_y - 3, x + 4, "{0:<44}".format("Type: 'new hive'  to get new letters"))
-    screen.addstr(center_y - 2, x + 4, "{0:<44}".format("Type: 'give hint'  to get the first 2 letters"))
+    screen.addstr(center_y - 4, x, "{0:^48}".format("De volgende opties kun je typen :"))
+    screen.addstr(center_y - 2, x, " {0:^12}  |  {1:^15} | {2:^13}".format("verlaat spel", "nieuwe letters", "geef hint"))
 
 
 def get_difficulty(difficulty):
@@ -112,11 +111,11 @@ def get_difficulty(difficulty):
 
 def difficulty_block(screen, center_y, center_x, difficulty):
     x = center_x - 24
-    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 17)
-    textpad.rectangle(screen, center_y - 1, x + 18, center_y + 1, x + 48)
+    textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 15)
+    textpad.rectangle(screen, center_y - 1, x + 16, center_y + 1, x + 48)
 
-    screen.addstr(center_y, x + 2, "{0:^15}".format("Player Bee"))
-    screen.addstr(center_y, x + 20, "Difficulty : ")
+    screen.addstr(center_y, x + 2, "{0:^13}".format("Player Bee"))
+    screen.addstr(center_y, x + 18, "Moeilijkheid : ")
     screen.addstr(center_y, x + 33, "{0:^14}".format(get_difficulty(difficulty)))
 
 
@@ -125,21 +124,22 @@ def result_block(screen, center_y, center_x, tot_points, words_guested):
         Create the result screen.
         :return: nothing, just writes to the screen.
     """
-    x = center_x - 26
-    screen.addstr(center_y - 3, x, " __     __                                    _ _   ")
-    screen.addstr(center_y - 2, x, " \ \   / /                                   | | |  ")
-    screen.addstr(center_y - 1, x, "  \ \_/ /__  _   _ _ __   _ __ ___  ___ _   _| | |_ ")
-    screen.addstr(center_y, x, "   \   / _ \| | | | '__| | '__/ _ \/ __| | | | | __|")
-    screen.addstr(center_y + 1, x, "    | | (_) | |_| | |    | | |  __/\__ \ |_| | | |_ ")
-    screen.addstr(center_y + 2, x, "    |_|\___/ \__,_|_|    |_|  \___||___/\__,_|_|\__|")
+    x = center_x - 37
+    screen.addstr(center_y - 3, x, "       _                        _____                 _ _              _   ")
+    screen.addstr(center_y - 2, x, "      | |                      |  __ \               | | |            | |  ")
+    screen.addstr(center_y - 1, x, "      | | ___  _   ___      __ | |__) |___  ___ _   _| | |_ __ _  __ _| |_ ")
+    screen.addstr(center_y    , x, "  _   | |/ _ \| | | \ \ /\ / / |  _  // _ \/ __| | | | | __/ _` |/ _` | __|")
+    screen.addstr(center_y + 1, x, " | |__| | (_) | |_| |\ V  V /  | | \ \  __/\__ \ |_| | | || (_| | (_| | |_ ")
+    screen.addstr(center_y + 2, x, "  \____/ \___/ \__,_| \_/\_/   |_|  \_\___||___/\__,_|_|\__\__,_|\__,_|\__|")
 
-    screen.addstr(center_y + 5, x, "{0:^52}".format("Your total score was " + str(tot_points) + "!"))
+    screen.addstr(center_y + 5, x, "{0:^75}".format("Jouw totale score was " + str(tot_points) + "!"))
     if words_guested == 1:
-        screen.addstr(center_y + 6, x, "{0:^52}".format("You guested " + str(words_guested) + " word"))
+        screen.addstr(center_y + 6, x, "{0:^75}".format("Jij raadde " + str(words_guested) + " woord"))
     else:
-        screen.addstr(center_y + 6, x, "{0:^52}".format("Your guested " + str(words_guested) + " words"))
-    screen.addstr(center_y + 9, x, "{0:^52}".format("press Enter to go to the home screen"))
-    screen.addstr(center_y + 11, x, "{0:^52}".format("press Esc to exit game"))
+        screen.addstr(center_y + 6, x, "{0:^75}".format("Jij raadde " + str(words_guested) + " woorden"))
+
+    screen.addstr(center_y + 9, x, "{0:^75}".format("druk op Enter om naar het startscherm te gaan."))
+    screen.addstr(center_y + 10, x, "{0:^75}".format("druk op Esc op het spel te verlaten."))
 
 
 def instructions_block(screen, center_y, center_x, h, w):
@@ -148,12 +148,13 @@ def instructions_block(screen, center_y, center_x, h, w):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 29
-    screen.addstr(center_y - 3, x, " _____           _                   _   _                  ")
-    screen.addstr(center_y - 2, x, "|_   _|         | |                 | | (_)                 ")
-    screen.addstr(center_y - 1, x, "  | |  _ __  ___| |_ _ __ _   _  ___| |_ _  ___  _ __  ___  ")
-    screen.addstr(center_y, x, "  | | | '_ \/ __| __| '__| | | |/ __| __| |/ _ \| '_ \/ __| ")
-    screen.addstr(center_y + 1, x, " _| |_| | | \__ \ |_| |  | |_| | (__| |_| | (_) | | | \__ \ ")
-    screen.addstr(center_y + 2, x, "|_____|_| |_|___/\__|_|   \__,_|\___|\__|_|\___/|_| |_|___/ ")
+    screen.addstr(center_y - 3, x, "  _____           _                   _   _             ")
+    screen.addstr(center_y - 2, x, " |_   _|         | |                 | | (_)            ")
+    screen.addstr(center_y - 1, x, "   | |  _ __  ___| |_ _ __ _   _  ___| |_ _  ___  ___   ")
+    screen.addstr(center_y    , x, "   | | | '_ \/ __| __| '__| | | |/ __| __| |/ _ \/ __|  ")
+    screen.addstr(center_y + 1, x, "  _| |_| | | \__ \ |_| |  | |_| | (__| |_| |  __/\__ \  ")
+    screen.addstr(center_y + 2, x, " |_____|_| |_|___/\__|_|   \__,_|\___|\__|_|\___||___/  ")
+
     screen.addstr(center_y + 5, x - 2, "{0:<52}".format("Het doel van dit spel is om zoveel mogelijk punten "
                                                         "te verdienen."))
     screen.addstr(center_y + 6, x - 2, "{0:<52}".format("Dit kan gedaan worden door zoveel "
@@ -250,18 +251,26 @@ def arrow(screen, center_y, center_x, direction):
 
 
 
-def rules_block(screen, center_y, center_x):
+def points_block(screen, center_y, center_x):
     """
-        Create the rules screen.
+        Create the points screen.
         :return: nothing, just writes to the screen.
     """
-    x = center_x - 14
-    screen.addstr(center_y - 3, x, "  _____       _            ")
-    screen.addstr(center_y - 2, x, " |  __ \     | |           ")
-    screen.addstr(center_y - 1, x, " | |__) |   _| | ___  ___  ")
-    screen.addstr(center_y, x,     " |  _  / | | | |/ _ \/ __| ")
-    screen.addstr(center_y + 1, x, " | | \ \ |_| | |  __/\__ \ ")
-    screen.addstr(center_y + 2, x, " |_|  \_\__,_|_|\___||___/ ")
-    x -= 12
-    screen.addstr(center_y + 5, x, "{0:^52}".format("1: Something Something Something"))
-    screen.addstr(center_y + 6, x, "{0:^52}".format("2: Something Something Something"))
+    x = center_x - 36
+    screen.addstr(center_y - 3, x, "  _____             _                             _                      ")
+    screen.addstr(center_y - 2, x, " |  __ \           | |                           | |                     ")
+    screen.addstr(center_y - 1, x, " | |__) |   _ _ __ | |_ ___ _ __    ___ _   _ ___| |_ ___  ___ _ __ ___  ")
+    screen.addstr(center_y, x,     " |  ___/ | | | '_ \| __/ _ \ '_ \  / __| | | / __| __/ _ \/ _ \ '_ ` _ \ ")
+    screen.addstr(center_y + 1, x, " | |   | |_| | | | | ||  __/ | | | \__ \ |_| \__ \ ||  __/  __/ | | | | |")
+    screen.addstr(center_y + 2, x, " |_|    \__,_|_| |_|\__\___|_| |_| |___/\__, |___/\__\___|\___|_| |_| |_|")
+    screen.addstr(center_y + 3, x, "                                         __/ |                           ")
+    screen.addstr(center_y + 3, x, "                                        |___/                            ")
+
+    x += 5
+    screen.addstr(center_y + 5, x, "{0:<47}{1:<14}".format("Antwoord : ", "Aantal punten : "))
+    screen.addstr(center_y + 7, x, "  {0:<47}{1:<14}".format("4 letter woord", "1 punt"))
+    screen.addstr(center_y + 8, x, "  {0:<47}{1:<14}".format("Woorden vanaf 5 letters ", "1 punt per letter"))
+    screen.addstr(center_y + 9, x, "  {0:<47}{1:<14}".format("Elke letter minimaal 1 keer gebruiken", "7 extra punten"))
+    screen.addstr(center_y + 10, x, "  {0:<47}{1:<14}".format("Alle woorden met de gegeven letters raden",
+                                                             "20 extra punten"))
+    screen.addstr(center_y + 12, x, "{0:^64}".format("Druk op een toets om het punten systeem te verlaten."))

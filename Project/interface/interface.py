@@ -10,10 +10,13 @@ def create_screen():
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
-    if h < 28 or w < 105:
+    if h < 28:
         print("screen is to small, try making it bigger. \n"
-              "height must be 28 lines or more. \n"
-              "Width must be 105 columns or more. \n")
+              "height must be 28 lines or more. (now " + ")\n")
+        exit(0)
+    if w < 105:
+        print("screen is to small, try making it bigger. \n"
+              "Width must be 105 columns or more. (now " + ") \n")
         exit(0)
     cs.noecho()
     cs.curs_set(0)
@@ -26,7 +29,6 @@ def create_screen():
 
 def welcome_screen(screen: object, h, w):
     """ Creates a welcome screen, waits until user presses Enter or Esc.
-        TODO Pages like instructions/rules need to be added.
         call this function to clear screen and show welcome screen
         :param w:
         :param h:
@@ -55,7 +57,7 @@ def welcome_screen(screen: object, h, w):
                 drawings.instructions_block(screen, y, x, h, w)
                 screen.refresh()
             if current_idx == 2:
-                drawings.rules_block(screen, y, x)
+                drawings.points_block(screen, y, x)
                 screen.refresh()
                 screen.getch()
             if current_idx == 3:
@@ -89,10 +91,10 @@ def play_screen(screen: object, h, w):
     y = (h - 6) // 2
     x = w // 4
     drawings.hiven(screen, y, x)
-    drawings.input_block(screen, h - 2, x)      # create input block
+    drawings.input_block(screen, h - 2, x)  # create input block
 
     x = (w // 4) * 3
-    drawings.words_found_block(screen, 2, x, 0)    # create words found block:
+    drawings.words_found_block(screen, 2, x, 0)  # create words found block:
     drawings.game_info_block(screen, h - 2, x)
     screen.refresh()
 
@@ -212,19 +214,19 @@ def update_words_found(screen: object, list_of_results: list, h, w, tot_points, 
     n_lines = (h - 10) // 4 * 3
     if n_words <= n_lines:
         for n in range(0, n_words):
-            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[n][0],
-                                                                list_of_results[n][1]))
+            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[n][0],
+                                                            list_of_results[n][1]))
     elif n_words == n_lines:
-        screen.addstr(y, x, "{0:<21}{1:>18}".format("...", "..."))
+        screen.addstr(y, x, "{0:<19}{1:>18}".format("...", "..."))
         for n in range(1, n_lines):
-            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[n][0],
-                                                                list_of_results[n][1]))
+            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[n][0],
+                                                            list_of_results[n][1]))
     else:
-        screen.addstr(y, x, "{0:<21}{1:>18}".format("...", "..."))
+        screen.addstr(y, x, "{0:<19}{1:>18}".format("...", "..."))
         p = n_words - n_lines
         for n in range(1, n_lines):
-            screen.addstr(y + n, x, "{0:<21}{1:>17}".format(list_of_results[p + n][0],
-                                                                list_of_results[p + n][1]))
+            screen.addstr(y + n, x, "{0:<20}{1:>17}".format(list_of_results[p + n][0],
+                                                            list_of_results[p + n][1]))
     screen.addstr(h - 2, x + 12, "{0:^4}".format(tot_points))
     screen.addstr(h - 2, x + 38, "{0:^4}".format(len_set))
     screen.refresh()

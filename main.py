@@ -19,17 +19,17 @@ def main():
             update_words_found(stdscr, list_of_results, h, w, gamestate.score, len(gamestate.word_set))
             input_str = user_input(stdscr, h, w)  # ask user for input
 
-            if input_str == "exit game":  # check if user wants to leave, show title screen
+            if input_str == "verlaat spel":  # check if user wants to leave, show title screen
                 title_screen(stdscr, gamestate.score, h, w, len(list_of_results) - results_corr)
                 break
 
-            elif input_str == "new hive":  # if the user wants a new hive
+            elif input_str == "nieuwe letters":  # if the user wants a new hive
                 gamestate.reset_game()
                 add_word(stdscr, gamestate.letters, h, w)
                 difficulty_block(stdscr, h, w, len(gamestate.word_set))
                 give_feedback(stdscr, "", h, w)
 
-            elif input_str == "give hint":
+            elif input_str == "geef hint":
                 hint = "Hint '{0}{1}'".format(gamestate.get_hint()[0], "." * gamestate.get_hint()[1])
                 give_feedback(stdscr, hint, h, w)
 
