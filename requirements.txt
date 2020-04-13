@@ -1,3 +1,4 @@
 ###### Requirements without Version Specifiers ######
-windows-curses
+windows-curses; platform_system == "Windows"
 unidecode
+python_version >= '3.8.0'
