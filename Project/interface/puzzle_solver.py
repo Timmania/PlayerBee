@@ -4,7 +4,7 @@
 """
 
 from random import *
-from Gamestate import GameState
+from Project.interface.Gamestate import GameState
 from woordenlijst.woordenlijst_filter import possible_words
 
 
