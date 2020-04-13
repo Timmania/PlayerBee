@@ -9,8 +9,8 @@ def main():
     while 1:
         welcome_screen(stdscr, h, w)  # put a welcome screen on stdscr
         gamestate.reset_game()
-        play_screen(stdscr, h, w)  # clear screen, output lay out for the game
-        difficulty_block(stdscr, h, w, len(gamestate.word_set))
+        play_screen(stdscr, h, w)  # clear screen, print lay out for the game
+        difficulty_block(stdscr, w, len(gamestate.word_set))
         add_word(stdscr, gamestate.letters, h, w)  # add first word to screen
         list_of_results = []
         results_corr = 0
@@ -28,7 +28,7 @@ def main():
             elif input_str == "nieuwe letters":  # if the user wants a new hive
                 gamestate.reset_game()
                 add_word(stdscr, gamestate.letters, h, w)
-                difficulty_block(stdscr, h, w, len(gamestate.word_set))
+                difficulty_block(stdscr, w, len(gamestate.word_set))
                 give_feedback(stdscr, "", h, w)
 
             elif input_str == "geef hint":
@@ -59,7 +59,7 @@ def main():
                     update_words_found(stdscr, list_of_results, h, w,
                                        gamestate.score,
                                        len(gamestate.word_set))
-                    update_words_found_int(stdscr, h, w,
+                    update_words_found_int(stdscr, w,
                                            len(list_of_results) - results_corr)
 
 

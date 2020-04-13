@@ -6,7 +6,7 @@ def create_screen():
     """ This function initializes a screen.
         It also changes some settings to work properly.
         checks if the screen is big enough to fit elements nicely.
-        :return: screen
+        :return: curses screen object, width and height of that screen.
     """
     screen = cs.initscr()
     h, w = screen.getmaxyx()
@@ -32,9 +32,9 @@ def create_screen():
 def welcome_screen(screen: object, h, w):
     """ Creates a welcome screen, waits until user presses Enter or Esc.
         call this function to clear screen and show welcome screen
-        :param w:
-        :param h:
-        :param screen:
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
     """
     x = w // 2
     y = h // 2 - 4
@@ -84,10 +84,9 @@ def welcome_screen(screen: object, h, w):
 
 def play_screen(screen: object, h, w):
     """ Puts the lay-out on the screen for the game itself.
-        TODO find fix for resizing screen
-        :param w:
-        :param h:
-        :param screen:
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
     """
     # create hive figure
     y = (h - 6) // 2
@@ -101,24 +100,34 @@ def play_screen(screen: object, h, w):
     screen.refresh()
 
 
-def difficulty_block(screen: object, h, w, difficulty):
+def difficulty_block(screen: object, w, difficulty):
+    """ create difficulty block with the difficulty
+        according to the number of words possible.
+        :param w: width of screen
+        :param screen: curses screen object
+        :param difficulty: number of words possible
+    """
     x = w // 4
     drawings.difficulty_block(screen, 2, x, difficulty)
 
 
-def update_words_found_int(screen: object, h, w, words_found):
+def update_words_found_int(screen: object, w, words_found):
+    """ update the integer of words found.
+        :param w: width of screen
+        :param screen: curses screen object
+        :param words_found: number of words found
+    """
     x = (w // 4) * 3
     drawings.words_found_block(screen, 2, x, words_found)
 
 
 def add_word(screen: object, word: list, h, w):
-    """ Add word to the screen. this should only be done when required.
-        The characters should fit nicely into the hive.
+    """ Add word to the hive. this should only be done when required.
         This function does not clear anything, only overwrite.
-        :param w:
-        :param h:
-        :param screen:
-        :type word: list:
+        :param word: list of letters in hive
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
     """
     y = (h - 6) // 2
     x = w // 4
@@ -136,9 +145,10 @@ def user_input(screen: object, h, w) -> str:
     """ Asks the user to input a word.
         Upon hitting enter, the typed characters will be returned.
         The returned string is stripped and lower.
-        :param w:
-        :param h:
-        :type screen: object
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
+        :return: the user input
     """
     x = w // 4 - 22
     inp_scr = screen.subwin(1, 21, h - 2, x)
@@ -155,11 +165,10 @@ def user_input(screen: object, h, w) -> str:
 def give_feedback(screen: object, feedback: str, h, w):
     """ prints out the feedback of the last given answer.
         Feedback should be a message or the points received.
-        TODO look at the position of input screen and the text above
-        :param w:
-        :param h:
-        :param screen:
-        :param feedback:
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
+        :param feedback: string of feedback
     """
     x = w // 4 - 9
     screen.addstr(h - 4, x, "{0:>33}".format(feedback))
@@ -167,23 +176,30 @@ def give_feedback(screen: object, feedback: str, h, w):
 
 
 def give_hint(screen, hint, h, w):
+    """ gives the user a hint.
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
+        :param hint: a string
+    """
     x = w // 4 - 17
     screen.addstr(h - 2, x, "{0}".format(hint))
     screen.refresh()
 
 
-def title_screen(screen: object, tot_points: int, h, w, words_guested):
+def title_screen(screen: object, tot_points: int, h, w, words_guessed):
     """ After the user typed exit game, this screen will show.
         The user can go to the home screen or exit the game.
-        :param w:
-        :param h:
-        :param screen:
-        :param tot_points:
+        :param words_guessed: the number of words the user guesses
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
+        :param tot_points: the total of points the user got.
     """
     screen.clear()
     x = w // 2
     y = h // 2 - 5
-    drawings.result_block(screen, y, x, tot_points, words_guested)
+    drawings.result_block(screen, y, x, tot_points, words_guessed)
     screen.refresh()
     while 1:
         key = screen.getch()
@@ -205,13 +221,12 @@ def update_words_found(screen: object, list_of_results: list, h, w,
     """ update the word_list on the right of the screen.
         The word plus the score of that word will be shown.
         Only correct guessed words are shown.
-        TODO fix this function
-        :param len_set:
-        :param tot_points:
-        :param w:
-        :param h:
-        :param screen:
-        :param list_of_results:
+        :param len_set: words remaining
+        :param tot_points: total points the user got
+        :param w: width of screen
+        :param h: height of screen
+        :param screen: curses screen object
+        :param list_of_results: list of words the user guessed
     """
     y = 5
     x = (w // 4) * 3 - 18
@@ -239,11 +254,3 @@ def update_words_found(screen: object, list_of_results: list, h, w,
     screen.addstr(h - 2, x + 12, "{0:^4}".format(tot_points))
     screen.addstr(h - 2, x + 38, "{0:^4}".format(len_set))
     screen.refresh()
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

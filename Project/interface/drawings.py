@@ -2,12 +2,12 @@ import curses as cs
 from curses import textpad
 from Project.interface import interface
 
+"""
+All these functions write rectangles, asci art and text on the screen.
+"""
+
 
 def player_b(screen, center_y, center_x):
-    """
-    Writes text "Player Bee" to the screen.
-    :return: nothing, just writes to the screen.
-    """
     x = center_x - 26
     screen.addstr(center_y - 4, x,
                   "  _____  _                         ____             ")
@@ -28,10 +28,6 @@ def player_b(screen, center_y, center_x):
 
 
 def menu_block(screen, y, center_x, current_idx):
-    """
-        Writes the menu to the screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 26
     menu = ["Speel spel", "Instructies", "Punten systeem", "Spel verlaten"]
     for idx, row in enumerate(menu):
@@ -44,10 +40,6 @@ def menu_block(screen, y, center_x, current_idx):
 
 
 def hiven(screen, center_y, center_x):
-    """
-        Writes the hiven figure to the screen
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 19
     screen.addstr(center_y - 7, x, "                _______                 ")
     screen.addstr(center_y - 6, x, "              /         \               ")
@@ -67,20 +59,12 @@ def hiven(screen, center_y, center_x):
 
 
 def input_block(screen, center_y, center_x):
-    """
-        Creates a block on the screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 24
     screen.addstr(center_y - 2, x, "Type een woord:")
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 48)
 
 
 def words_found_block(screen, center_y, center_x, words_found):
-    """
-        Creates a block on the screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 24
     screen.addstr(center_y, x + 1,
                   "{0:^47}".format("Woorden gevonden : " +
@@ -91,10 +75,6 @@ def words_found_block(screen, center_y, center_x, words_found):
 
 
 def game_info_block(screen, center_y, center_x):
-    """
-        Writes some game info on the screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 24
     textpad.rectangle(screen, center_y - 1, x, center_y + 1, x + 23)
     textpad.rectangle(screen, center_y - 1, x + 24, center_y + 1, x + 48)
@@ -136,10 +116,6 @@ def difficulty_block(screen, center_y, center_x, difficulty):
 
 
 def result_block(screen, center_y, center_x, tot_points, words_guested):
-    """
-        Create the result screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 37
     screen.addstr(center_y - 3, x,
                   "       _                        _____                 _ _              _   ")
@@ -170,10 +146,6 @@ def result_block(screen, center_y, center_x, tot_points, words_guested):
 
 
 def instructions_block(screen, center_y, center_x, h, w):
-    """
-        Create the instructions screens.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 29
     screen.addstr(center_y - 3, x,
                   "  _____           _                   _   _             ")
@@ -305,10 +277,6 @@ def arrow(screen, center_y, center_x, direction):
 
 
 def points_block(screen, center_y, center_x):
-    """
-        Create the points screen.
-        :return: nothing, just writes to the screen.
-    """
     x = center_x - 36
     screen.addstr(center_y - 3, x,
                   "  _____             _                             _                      ")
