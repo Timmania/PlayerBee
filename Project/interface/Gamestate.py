@@ -45,13 +45,13 @@ class GameState:
         """
         if word == "all_found":
             self.score += 20
-            return "You found all words! Congrats! +20"
+            return "Je hebt alle woorden gevonden. gefeliciteerd! +20"
         if len(word) == 4:
             self.score += 1
             return ["+1", 1]
         elif sorted(list(set(list(word)))) == sorted(self.letters):
             self.score += len(word) + 7
-            return ["PANGRAM FOUND! +" + str(len(word) + 7), len(word) + 7]
+            return ["PANGRAM GEVONDEN! +" + str(len(word) + 7), len(word) + 7]
         else:
             self.score += len(word)
             return ["+" + str(len(word)), len(word)]
@@ -64,18 +64,18 @@ class GameState:
         :return: list with user feedback or call to increase_score
         """
         if guess in self.guesses:
-            return ["Word already guessed"]
+            return ["Woord al gereden"]
         else:
             self.guesses.add(guess)
 
         if len(guess) < 4:
-            return ["Word must be 4 letters minimum"]
+            return ["Woord moet minimaal 4 letters zijn"]
         if not all(x in self.letters for x in list(guess)):
-            return ["Letter not in grate"]
+            return ["Gegeven letter niet in graat"]
         if not self.letters[0] in guess:
-            return ["Middle letter not in guess"]
+            return ["Middelste letter niet gebruikt"]
         if guess not in self.word_set:
-            return ["Word not in word set"]
+            return ["Gegeven woord staat niet in de woordenlijst"]
 
         self.word_set.remove(guess)
         return self.increase_score(guess)
