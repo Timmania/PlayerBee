@@ -319,7 +319,7 @@ def points_block(screen, center_y, center_x):
     screen.addstr(center_y, x,
                   " |  ___/ | | | '_ \| __/ _ \ '_ \  / __| | | / __| __/ _ \/ _ \ '_ ` _ \ ")
     screen.addstr(center_y + 1, x,
-                  " | |   | |_| | | | | ||  __/ | | | \__ \ |_| \__ \ha ||  __/  __/ | | | | |")
+                  " | |   | |_| | | | | ||  __/ | | | \__ \ |_| \__ \ ||  __/  __/ | | | | |")
     screen.addstr(center_y + 2, x,
                   " |_|    \__,_|_| |_|\__\___|_| |_| |___/\__, |___/\__\___|\___|_| |_| |_|")
     screen.addstr(center_y + 3, x,

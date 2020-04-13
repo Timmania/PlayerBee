@@ -45,7 +45,7 @@ class GameState:
         """
         if word == "all_found":
             self.score += 20
-            return "Je hebt alle woorden gevonden. gefeliciteerd! +20"
+            return "Graat voltooid! +20"
         if len(word) == 4:
             self.score += 1
             return ["+1", 1]
@@ -69,13 +69,13 @@ class GameState:
             self.guesses.add(guess)
 
         if len(guess) < 4:
-            return ["Woord moet minimaal 4 letters zijn"]
+            return ["Woordlengte minimaal 4 letters"]
         if not all(x in self.letters for x in list(guess)):
             return ["Gegeven letter niet in graat"]
         if not self.letters[0] in guess:
             return ["Middelste letter niet gebruikt"]
         if guess not in self.word_set:
-            return ["Gegeven woord staat niet in de woordenlijst"]
+            return ["Gegeven woord niet gevonden"]
 
         self.word_set.remove(guess)
         return self.increase_score(guess)
