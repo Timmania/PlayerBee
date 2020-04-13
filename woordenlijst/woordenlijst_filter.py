@@ -70,7 +70,7 @@ def possible_words(letters_on_display):
     return good_words
 
 
-def filter():
+def filter_words():
     """
     This function takes the words_list and cusswords and,
     cleans the words in the words_list,
@@ -125,7 +125,7 @@ def get_files():
     return data, scheldwoorden
 
 
-filter_list = filter()
+filter_list = filter_words()
 # This is a global variable used for storing the filtered list.
 # Once someone presses new hive,
 # the system will not execute the whole filter again,
