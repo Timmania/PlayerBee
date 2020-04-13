@@ -39,3 +39,14 @@ Huub Exel did everything that had to do with the word list.
 All three students did the debugging.
 All the three students helped each other with idea's and coding.
 We tried to divide the workload as fair as possible among our group.
+
+# Want to cheat?
+Run puzzle_solver.py as followed:
+```shell script
+python puzzle_solver.py middle_letter letter2 letter3 ... letter7
+```
+It tries to randomly guess a correct word for you.\
+This may take a while...\
+...\
+..\
+.
