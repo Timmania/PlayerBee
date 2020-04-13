@@ -25,7 +25,7 @@ def menu_block(screen, y, center_x, current_idx):
         :return: nothing, just writes to the screen.
     """
     x = center_x - 26
-    menu = ["Speel spel", "instructies", "Punten systeem", "Spel verlaten"]
+    menu = ["Speel spel", "Instructies", "Punten systeem", "Spel verlaten"]
     for idx, row in enumerate(menu):
         if idx == current_idx:
             screen.attron(cs.color_pair(1))
@@ -95,14 +95,15 @@ def game_info_block(screen, center_y, center_x):
     screen.addstr(center_y, x + 44, "{0:^4}".format("???"))
 
     screen.addstr(center_y - 4, x, "{0:^48}".format("De volgende opties kun je typen :"))
-    screen.addstr(center_y - 2, x, " {0:^12}  |  {1:^15} | {2:^13}".format("verlaat spel", "nieuwe letters", "geef hint"))
+    screen.addstr(center_y - 2, x,
+                  " {0:^12}  |  {1:^15} | {2:^13}".format("verlaat spel", "nieuwe letters", "geef hint"))
 
 
 def get_difficulty(difficulty):
     if difficulty <= 20:
         return "Player Bee(st)"
     elif difficulty <= 50:
-        return "Intermediate"
+        return "Moeilijk"
     elif difficulty <= 100:
         return "Medium"
     else:
@@ -128,7 +129,7 @@ def result_block(screen, center_y, center_x, tot_points, words_guested):
     screen.addstr(center_y - 3, x, "       _                        _____                 _ _              _   ")
     screen.addstr(center_y - 2, x, "      | |                      |  __ \               | | |            | |  ")
     screen.addstr(center_y - 1, x, "      | | ___  _   ___      __ | |__) |___  ___ _   _| | |_ __ _  __ _| |_ ")
-    screen.addstr(center_y    , x, "  _   | |/ _ \| | | \ \ /\ / / |  _  // _ \/ __| | | | | __/ _` |/ _` | __|")
+    screen.addstr(center_y, x, "  _   | |/ _ \| | | \ \ /\ / / |  _  // _ \/ __| | | | | __/ _` |/ _` | __|")
     screen.addstr(center_y + 1, x, " | |__| | (_) | |_| |\ V  V /  | | \ \  __/\__ \ |_| | | || (_| | (_| | |_ ")
     screen.addstr(center_y + 2, x, "  \____/ \___/ \__,_| \_/\_/   |_|  \_\___||___/\__,_|_|\__\__,_|\__,_|\__|")
 
@@ -151,7 +152,7 @@ def instructions_block(screen, center_y, center_x, h, w):
     screen.addstr(center_y - 3, x, "  _____           _                   _   _             ")
     screen.addstr(center_y - 2, x, " |_   _|         | |                 | | (_)            ")
     screen.addstr(center_y - 1, x, "   | |  _ __  ___| |_ _ __ _   _  ___| |_ _  ___  ___   ")
-    screen.addstr(center_y    , x, "   | | | '_ \/ __| __| '__| | | |/ __| __| |/ _ \/ __|  ")
+    screen.addstr(center_y, x, "   | | | '_ \/ __| __| '__| | | |/ __| __| |/ _ \/ __|  ")
     screen.addstr(center_y + 1, x, "  _| |_| | | \__ \ |_| |  | |_| | (__| |_| |  __/\__ \  ")
     screen.addstr(center_y + 2, x, " |_____|_| |_|___/\__|_|   \__,_|\___|\__|_|\___||___/  ")
 
@@ -250,7 +251,6 @@ def arrow(screen, center_y, center_x, direction):
     return arrow_screen
 
 
-
 def points_block(screen, center_y, center_x):
     """
         Create the points screen.
@@ -260,8 +260,8 @@ def points_block(screen, center_y, center_x):
     screen.addstr(center_y - 3, x, "  _____             _                             _                      ")
     screen.addstr(center_y - 2, x, " |  __ \           | |                           | |                     ")
     screen.addstr(center_y - 1, x, " | |__) |   _ _ __ | |_ ___ _ __    ___ _   _ ___| |_ ___  ___ _ __ ___  ")
-    screen.addstr(center_y, x,     " |  ___/ | | | '_ \| __/ _ \ '_ \  / __| | | / __| __/ _ \/ _ \ '_ ` _ \ ")
-    screen.addstr(center_y + 1, x, " | |   | |_| | | | | ||  __/ | | | \__ \ |_| \__ \ ||  __/  __/ | | | | |")
+    screen.addstr(center_y, x, " |  ___/ | | | '_ \| __/ _ \ '_ \  / __| | | / __| __/ _ \/ _ \ '_ ` _ \ ")
+    screen.addstr(center_y + 1, x, " | |   | |_| | | | | ||  __/ | | | \__ \ |_| \__ \ha ||  __/  __/ | | | | |")
     screen.addstr(center_y + 2, x, " |_|    \__,_|_| |_|\__\___|_| |_| |___/\__, |___/\__\___|\___|_| |_| |_|")
     screen.addstr(center_y + 3, x, "                                         __/ |                           ")
     screen.addstr(center_y + 3, x, "                                        |___/                            ")
@@ -272,5 +272,5 @@ def points_block(screen, center_y, center_x):
     screen.addstr(center_y + 8, x, "  {0:<47}{1:<14}".format("Woorden vanaf 5 letters ", "1 punt per letter"))
     screen.addstr(center_y + 9, x, "  {0:<47}{1:<14}".format("Elke letter minimaal 1 keer gebruiken", "7 extra punten"))
     screen.addstr(center_y + 10, x, "  {0:<47}{1:<14}".format("Alle woorden met de gegeven letters raden",
-                                                             "20 extra punten"))
+                                                              "20 extra punten"))
     screen.addstr(center_y + 12, x, "{0:^64}".format("Druk op een toets om het punten systeem te verlaten."))
