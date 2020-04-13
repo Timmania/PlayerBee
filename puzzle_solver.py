@@ -2,9 +2,8 @@
     This program tries to solve the puzzle, 1 word at the time.
     It stops when it actually found 1 word. It prints that word on the screen.
 """
-
+import sys
 from random import *
-from Project.interface.Gamestate import GameState
 from woordenlijst.woordenlijst_filter import possible_words
 
 
@@ -45,5 +44,15 @@ def give_guess(letters):
     # returns guess as string
 
 
-def main():
-    gamestate = GameState()
+def main(argv):
+    if len(argv) != 8:
+        print("Usage: python puzzle_solver.py letter1 letter2 etc...")
+        exit(0)
+    _, x1, x2, x3, x4, x5, x6, x7 = argv
+    letters = [x1, x2, x3, x4, x5, x6, x7]
+
+    find_match(letters)
+
+
+if __name__ == '__main__':
+    main(sys.argv)

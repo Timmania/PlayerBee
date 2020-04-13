@@ -21,7 +21,7 @@ class TestGameState:
 
         assert len(state.get_hint()) == 2
         assert state.is_correct("saai") == ['+1', 1]
-        assert state.increase_score("staflid") == ['PANGRAM FOUND! +14', 14]
+        assert state.increase_score("staflid") == ['PANGRAM GEVONDEN! +14', 14]
 
 
 class TestWoordenlijstFilter:
