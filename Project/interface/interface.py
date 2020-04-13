@@ -12,12 +12,12 @@ def create_screen():
     h, w = screen.getmaxyx()
     if h < 28:
         print("screen is to small, try making it bigger. \n"
-              "height must be 28 lines or more. (now " + h + ") \n")
+              "height must be 28 lines or more. (now " + str(h) + ") \n")
         cs.endwin()
         exit(0)
     if w < 105:
         print("screen is to small, try making it bigger. \n"
-              "Width must be 105 columns or more. (now " + w + ") \n")
+              "Width must be 105 columns or more. (now " + str(w) + ") \n")
         cs.endwin()
         exit(0)
     cs.noecho()
